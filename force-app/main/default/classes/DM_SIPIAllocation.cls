@@ -36,8 +36,8 @@ public with sharing class DM_SIPIAllocation {
         Zumzum.BankAllocateCreditsAndPaymentsService paymentService = new Zumzum.BankAllocateCreditsAndPaymentsService();
         for(Zumzum__Sales_Invoice_Line_Item__c siLine : siLineItems) {
             String customerAcctId = siLineItemMap.get(siLine.Id).Zumzum__Sales_Invoice__r.Zumzum__Account__c;
-            Zumzum__Ledger__c LedgerAllocateFrom = siLedgerMap.get(siLine.Id);
-            Zumzum__Ledger__c LedgerAllocateTo = siLedgerMap.get(siAllocateIdMap.get(siLine.Id));
+            Zumzum__Ledger__c ledgerAllocateFrom = siLedgerMap.get(siLine.Id);
+            Zumzum__Ledger__c ledgerAllocateTo = siLedgerMap.get(siAllocateIdMap.get(siLine.Id));
 
 
             Zumzum.BankAllocateCreditsAndPaymentsService.BankAllocateCreditsAndPaymentsWrapper allocatedPaymentWrapper =
@@ -49,15 +49,15 @@ public with sharing class DM_SIPIAllocation {
             List<Zumzum.BankAllocateCreditsAndPaymentsService.BankAllocateCreditsAndPaymentsLineWrapper> paymentLines = new List<Zumzum.BankAllocateCreditsAndPaymentsService.BankAllocateCreditsAndPaymentsLineWrapper>();
             Zumzum.BankAllocateCreditsAndPaymentsService.BankAllocateCreditsAndPaymentsLineWrapper bankLineItem;
 
-            Decimal amountToAllocate = LedgerAllocateFrom.Zumzum__Net_Amount__c > LedgerAllocateTo.Zumzum__Net_Amount__c ? LedgerAllocateTo.Zumzum__Net_Amount__c : LedgerAllocateFrom.Zumzum__Net_Amount__c;
+            Decimal amountToAllocate = ledgerAllocateFrom.Zumzum__Net_Amount__c > ledgerAllocateTo.Zumzum__Net_Amount__c ? ledgerAllocateTo.Zumzum__Net_Amount__c : ledgerAllocateFrom.Zumzum__Net_Amount__c;
 
             bankLineItem = new Zumzum.BankAllocateCreditsAndPaymentsService.BankAllocateCreditsAndPaymentsLineWrapper();
-            bankLineItem.LedgerName = LedgerAllocateFrom.Name;
+            bankLineItem.LedgerName = ledgerAllocateFrom.Name;
             bankLineItem.Amount = amountToAllocate;
             paymentLines.add(bankLineItem);
 
             bankLineItem = new Zumzum.BankAllocateCreditsAndPaymentsService.BankAllocateCreditsAndPaymentsLineWrapper();
-            bankLineItem.LedgerName = LedgerAllocateTo.Name;
+            bankLineItem.LedgerName = ledgerAllocateTo.Name;
             bankLineItem.Amount = amountToAllocate;
             paymentLines.add(bankLineItem);
 
@@ -102,8 +102,8 @@ public with sharing class DM_SIPIAllocation {
         Zumzum.BankAllocateCreditsAndPaymentsService paymentService = new Zumzum.BankAllocateCreditsAndPaymentsService();
         for(Zumzum__Purchase_Invoice_Line_Item__c piLine : piLineItems) {
             String customerAcctId = piLineItemMap.get(piLine.Id).Zumzum__Purchase_Invoice__r.Zumzum__Account__c;
-            Zumzum__Ledger__c LedgerAllocateFrom = piLedgerMap.get(piLine.Id);
-            Zumzum__Ledger__c LedgerAllocateTo = piLedgerMap.get(piAllocateIdMap.get(piLine.Id));
+            Zumzum__Ledger__c ledgerAllocateFrom = piLedgerMap.get(piLine.Id);
+            Zumzum__Ledger__c ledgerAllocateTo = piLedgerMap.get(piAllocateIdMap.get(piLine.Id));
 
             Zumzum.BankAllocateCreditsAndPaymentsService.BankAllocateCreditsAndPaymentsWrapper allocatedPaymentWrapper =
                     new Zumzum.BankAllocateCreditsAndPaymentsService.BankAllocateCreditsAndPaymentsWrapper();
@@ -115,13 +115,13 @@ public with sharing class DM_SIPIAllocation {
             Zumzum.BankAllocateCreditsAndPaymentsService.BankAllocateCreditsAndPaymentsLineWrapper bankLineItem;
 
             bankLineItem = new Zumzum.BankAllocateCreditsAndPaymentsService.BankAllocateCreditsAndPaymentsLineWrapper();
-            bankLineItem.LedgerName = LedgerAllocateFrom.Name;
-            bankLineItem.Amount = LedgerAllocateFrom.Zumzum__Net_Amount__c;
+            bankLineItem.LedgerName = ledgerAllocateFrom.Name;
+            bankLineItem.Amount = ledgerAllocateFrom.Zumzum__Net_Amount__c;
             paymentLines.add(bankLineItem);
 
             bankLineItem = new Zumzum.BankAllocateCreditsAndPaymentsService.BankAllocateCreditsAndPaymentsLineWrapper();
             bankLineItem.LedgerName = LedgerAllocateTo.Name;
-            bankLineItem.Amount = LedgerAllocateTo.Zumzum__Net_Amount__c;
+            bankLineItem.Amount = ledgerAllocateTo.Zumzum__Net_Amount__c;
             paymentLines.add(bankLineItem);
 
             allocatedPaymentWrapper.BankAllocateLines = paymentLines;
