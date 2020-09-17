@@ -346,7 +346,6 @@
         <members>dlrs__LookupRollupSummary2.OtherCharges</members>
         <members>dlrs__LookupRollupSummary2.OutstandingAmountUnpaidSalesInvoices</members>
         <members>dlrs__LookupRollupSummary2.SIRecurPaymentAmountNotYetCollected</members>
-        <members>dlrs__LookupRollupSummary2.TotalActualCourseIncome</members>
         <members>dlrs__LookupRollupSummary2.TotalCourseOtherCosts</members>
         <members>dlrs__LookupRollupSummary2.TotalCourseTravelCosts</members>
         <members>dlrs__LookupRollupSummary2.TotalCourseVenueCosts</members>
