@@ -20,6 +20,8 @@
         <members>AddMembershipScheduler</members>
         <members>AddMembershipTest</members>
         <members>AssignCasetoQueueTest</members>
+        <members>BacsSendRemittanceEmailsBatch</members>
+        <members>BacsSendRemittanceEmailsTest</members>
         <members>BatchOutboundBACSpayment</members>
         <members>BatchOutboundBACSpaymentTest</members>
         <members>BatchReceiptReportItem_Rollups_TDTM</members>
@@ -356,6 +358,7 @@
     </types>
     <types>
         <members>Account</members>
+        <members>Bacs_Remittance_Settings__c</members>
         <members>Batch_Receipt_Report__c</members>
         <members>Batch_Receipt_Report_Item__c</members>
         <members>Bank_Account_Settings__c</members>
@@ -482,6 +485,7 @@
     <types>
         <members>NCT_Templates/Adhoc_Payment_Confirmation</members>
         <members>NCT_Templates/Adhoc_Payment_Notification</members>
+        <members>NCT_Templates/BACSRemittanceEmail</members>
         <members>NCT_Templates/Booking_Confirmation_Email</members>
         <members>NCT_Templates/Booking_Created</members>
         <members>NCT_Templates/Booking_Payment_Details</members>
