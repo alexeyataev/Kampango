@@ -77,7 +77,7 @@ global with sharing class SESSION_ParentCourseSharing_TDTM extends npsp.TDTM_Run
         }
 
         @SuppressWarnings('PMD.ApexCRUDViolation')
-        //Incident #152 - https://confluence.nct.org.uk:8443/x/EoSO
+        //Incident #154 - https://confluence.nct.org.uk:8443/x/EoSO
         List<Course__c> coursesWithSessions = [
             SELECT Id, (
                 SELECT Practitioner__c 
@@ -111,7 +111,7 @@ global with sharing class SESSION_ParentCourseSharing_TDTM extends npsp.TDTM_Run
         Map<Id, Id> userIdsByPractitionerIds = new Map<Id, Id>();
 
         @SuppressWarnings('PMD.ApexCRUDViolation')
-        //Incident #153 - https://confluence.nct.org.uk:8443/x/EoSO
+        //Incident #155 - https://confluence.nct.org.uk:8443/x/EoSO
         List<User> usersWithContactIds = [
             SELECT ContactId
             FROM User
@@ -175,7 +175,7 @@ global with sharing class SESSION_ParentCourseSharing_TDTM extends npsp.TDTM_Run
 
 
     @SuppressWarnings('PMD.ApexCRUDViolation')
-    //Incident #154 - https://confluence.nct.org.uk:8443/x/EoSO
+    //Incident #152 - https://confluence.nct.org.uk:8443/x/EoSO
     private List<Course__Share> getCourseSharesToDelete(Map<Id, Set<Id>> userIdsByCourseIds, List<Session__c> sessionsToCheck) {
         Map<Id, Set<Id>> practitionerIdsByCourseIds = new Map<Id,Set<Id>>();
         
