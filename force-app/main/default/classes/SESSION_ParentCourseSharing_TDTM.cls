@@ -76,20 +76,22 @@ global with sharing class SESSION_ParentCourseSharing_TDTM extends npsp.TDTM_Run
             practitionerIds.add(session.Practitioner__c);
         }
 
+        List<Course__c> coursesWithSessions = [
+            SELECT Id, (
+                SELECT Practitioner__c 
+                FROM Sessions__r 
+                WHERE Practitioner__c IN :practitionerIds
+                )
+            FROM Course__c
+            WHERE Id IN :courseIds
+                AND Main_Practitioner__c NOT IN :practitionerIds
+            WITH SECURITY_ENFORCED
+        ];
+
         userIdsByPractitionerIds = getPractitionersWithUserIds(practitionerIds);
 
         if (!userIdsByPractitionerIds.isEmpty()) {
-            for (Course__c course : [
-                SELECT Id, (
-                    SELECT Practitioner__c 
-                    FROM Sessions__r 
-                    WHERE Practitioner__c IN :practitionerIds
-                    )
-                FROM Course__c
-                WHERE Id IN :courseIds
-                    AND Main_Practitioner__c NOT IN :practitionerIds
-                WITH SECURITY_ENFORCED
-            ]) {
+            for (Course__c course : coursesWithSessions) {
                 for (Session__c session : course.Sessions__r) {
                     if (userIdsByCourseIds.containsKey(course.Id)) {
                         userIdsByCourseIds.get(course.Id).add(userIdsByPractitionerIds.get(session.Practitioner__c));        
@@ -105,13 +107,14 @@ global with sharing class SESSION_ParentCourseSharing_TDTM extends npsp.TDTM_Run
 
     private Map<Id, Id> getPractitionersWithUserIds(Set<Id> practitionerIds) {
         Map<Id, Id> userIdsByPractitionerIds = new Map<Id, Id>();
-
-        for (User user : [
+        List<User> usersWithContactIds = [
             SELECT ContactId
             FROM User
             WHERE ContactId IN :practitionerIds
             WITH SECURITY_ENFORCED
-        ]) {
+        ];
+
+        for (User user : usersWithContactIds) {
             userIdsByPractitionerIds.put(user.ContactId, user.Id);
         }
         return userIdsByPractitionerIds;

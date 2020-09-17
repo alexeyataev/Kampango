@@ -2,10 +2,12 @@
 //Incident #149 - https://confluence.nct.org.uk:8443/x/EoSO
 @isTest
 public class SESSION_ParentCourseSharing_TDTM_Test {
+    private static final String ACCOUNT_BRANCH_RECORDTYPE = 'Branch';
     private static final String PRACTITIONER_LASTNAME = 'Smith';
     private static final String PRACTITIONER_LASTNAME_TWO = 'Jones';
     private static final String PRACTITIONER_EMAIL_ADDRESS = 'partnerCommunityUser@ncttest.com';
     private static final String PRACTITIONER_PROFILE_NAME = 'Practitioner';
+    private static final String PRACTITIONER_RECORDTYPE_NAME = 'Practitioner';
     private static final String SESSION_STATUS_PROVISIONAL = 'Provisional';
     private static final String SESSION_TYPE_STANDARD = 'Standard';
     private static final Integer COURSES_TO_CREATE = 1;
@@ -36,9 +38,45 @@ public class SESSION_ParentCourseSharing_TDTM_Test {
                         .buildLicenceToPractice()
                         .buildCoursesWithSessions(COURSES_TO_CREATE, SESSIONS_TO_CREATE);
     }
+
+    @isTest
+    static void CourseDoesNotHaveSessions_SessionAssignedMainPractitionerInserted_CourseShareNotCreated() {
+        List<Account> branchAccounts = [SELECT Id FROM Account WHERE RecordType.Name = :ACCOUNT_BRANCH_RECORDTYPE];
+        List<Contact> contacts = [SELECT Id FROM Contact WHERE RecordType.Name = :PRACTITIONER_RECORDTYPE_NAME];
+        List<Venue__c> venues = [SELECT Id FROM Venue__c];
+        List<Licence_To_Practice__c> licencesToPractice = [SELECT Id FROM Licence_To_Practice__c WHERE Contact__c = :contacts[0].Id];
+
+        TestCourseBuilder courseBuilder = new TestCourseBuilder();
+        Course__c course = courseBuilder
+            .withAccount(branchAccounts[0])
+            .withPractitioner(contacts[0])
+            .withMainVenue(venues[0])
+            .withLicenceToPractice(licencesToPractice[0])
+            .insertRecord(true)
+            .build();
+
+        TestSessionBuilder sessionBuilder = new TestSessionBuilder();
+        Session__c session = sessionBuilder
+            .withCourse(course)
+            .withType(SESSION_TYPE_STANDARD)
+            .withStatus(SESSION_STATUS_PROVISIONAL)
+            .withPractitioner(contacts[0])
+            .withPractitionerLicence(licencesToPractice[0])
+            .insertRecord(false)
+            .build();
+
+        List<Course__Share> courseSharesBeforeSessionInserted = [SELECT Id FROM Course__Share WHERE ParentId = :course.Id];
+
+        Test.startTest();
+        insert session;
+        Test.stopTest();
+
+        List<Course__Share> courseSharesAfterSessionInserted = [SELECT Id FROM Course__Share WHERE ParentId = :course.Id];
+        System.assertEquals(courseSharesBeforeSessionInserted.size(), courseSharesAfterSessionInserted.size());
+    }
     
     @isTest
-    static void PractitionerHasSessionsOnCourse_SessionInserted_NewCourseShareNotCreated() {
+    static void PractitionerHasSessionsOnCourse_SessionAssignedPractitionerInserted_CourseShareNotCreated() {
         List<Course__c> courses = [SELECT Id, Main_Practitioner__c FROM Course__c];
         List<Contact> contacts = [SELECT Id FROM Contact WHERE Id = :courses[0].Main_Practitioner__c];
         List<Licence_To_Practice__c> licencesToPractice = [SELECT Id FROM Licence_To_Practice__c WHERE Contact__c = :courses[0].Main_Practitioner__c];
@@ -100,7 +138,8 @@ public class SESSION_ParentCourseSharing_TDTM_Test {
         Test.stopTest();
 
         List<Course__Share> courseSharesAfterSessionsUpdated = [SELECT UserOrGroupId FROM Course__Share WHERE ParentId IN :courses];
-        System.assertEquals(courseSharesBeforeSessionsUpdated.size(), courseSharesAfterSessionsUpdated.size());
+        System.assertEquals(0, courseSharesBeforeSessionsUpdated.size());
+        System.assertEquals(1, courseSharesAfterSessionsUpdated.size());
         for (Course__Share courseShare : courseSharesAfterSessionsUpdated) {
             System.assertEquals(user.Id, courseShare.UserOrGroupId);            
         }
