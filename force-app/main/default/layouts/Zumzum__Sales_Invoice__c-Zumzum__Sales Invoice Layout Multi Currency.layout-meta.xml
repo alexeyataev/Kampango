@@ -177,6 +177,10 @@
                 <behavior>Readonly</behavior>
                 <field>Zumzum__Company_Total_Gross__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>RecurringPaymentAmountNotYetCollected__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -198,6 +202,10 @@
             <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>Zumzum__Total_Unpaid_Amount__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>Unpaid_SI_SC_Amount__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
