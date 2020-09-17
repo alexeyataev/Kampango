@@ -135,7 +135,7 @@ global with sharing class SESSION_ParentCourseSharing_TDTM extends npsp.TDTM_Run
             }
         }
 
-        // @SuppressWarnings('PMD.ApexCRUDViolation')
+        @SuppressWarnings('PMD.ApexCRUDViolation')
         //Incident #156 - https://confluence.nct.org.uk:8443/x/EoSO
         List<Course__Share> existingCourseSharings = [
             SELECT ParentId, UserOrGroupId
