@@ -58,6 +58,7 @@ public without sharing class TestDataFactory {
     public static List<User> financeUsers = new List<User>();
     public static List<User> psaManagers = new List<User>();
     private List<Contact> practitioners = new List<Contact>();
+    private List<Licence_To_Practice__c> licencesToPractice = new List<Licence_To_Practice__c>();
     private Account branchAccount;
     private static Account organizationAccount;
     private Course_Assignment__c courseAssignment;
@@ -341,6 +342,19 @@ public without sharing class TestDataFactory {
         return this;
     }
 
+    public TestDataFactory buildLicenceToPracticeForAllPractitioners() {
+        TestLicenceToPracticeBuilder licenceToPracticeBuilder = new TestLicenceToPracticeBuilder();
+        for (Contact practitioner : practitioners) {
+            licencesToPractice.add(licenceToPracticeBuilder
+                .withContact(practitioner)
+                .insertRecord(false)
+                .build()
+            );
+        }
+        insert licencesToPractice;
+        return this;
+    }
+
     public TestDataFactory buildCourseRecord(String status, Integer fee, Integer numberOfPlaces) {
         TestCourseBuilder courseBuilder = new TestCourseBuilder();
         course = courseBuilder
@@ -480,7 +494,9 @@ public without sharing class TestDataFactory {
         return this;
     }
 
-    public TestDataFactory buildCoursesWithSessions(Integer numberOfCourses, Integer numberOfSessions) {
+    public TestDataFactory buildCoursesWithSessionsWithNotMainPractitioner(Integer numberOfCourses, Integer numberOfSessions, Boolean sessionsAssignedMainPractitioner) {
+        Contact sessionPractitioner = !sessionsAssignedMainPractitioner && practitioners.size() > 1 ? practitioners[1] : practitioners[0];
+        Licence_To_Practice__c sessionPractitionerLicence = sessionsAssignedMainPractitioner ? licenceToPractice : [SELECT Id FROM Licence_To_Practice__c WHERE Contact__c = : sessionPractitioner.Id LIMIT 1];
         List<Course__c> coursesToInsert = new List<Course__c>();
         List<Session__c> sessionsToInsert = new List<Session__c>();
         List<Estimated_Costs__c> costsToInsert = new List<Estimated_Costs__c>();
@@ -523,9 +539,9 @@ public without sharing class TestDataFactory {
                     .withCourse(courses[iCourses])
                     .withVenue(venue)
                     .withRoom(room)
-                    .withPractitioner(practitioners[0])
+                    .withPractitioner(sessionPractitioner)
                     .withPractitionerFeeRate(practitionerFeeRate)
-                    .withPractitionerLicence(licenceToPractice)
+                    .withPractitionerLicence(sessionPractitionerLicence)
                     .withStatus(SESSION_PROVISIONAL_STATUS)
                     .insertRecord(false)
                     .build());
@@ -536,6 +552,10 @@ public without sharing class TestDataFactory {
         sessions.addAll(sessionsToInsert);
 
         return this;
+    }
+
+    public TestDataFactory buildCoursesWithSessions(Integer numberOfCourses, Integer numberOfSessions) {
+        return buildCoursesWithSessionsWithNotMainPractitioner(numberOfCourses, numberOfSessions, true);
     }
     
     public TestDataFactory buildCoursesWithChoseNumberAndStatusSessions(Integer numberOfCourses, Integer numberOfProvisionSession, Integer numberOfConfirmedSession) {
@@ -745,19 +765,25 @@ public without sharing class TestDataFactory {
         organizationAccount.OwnerId = users[1].Id;
         update organizationAccount;
 
-        Contact practitioner = [SELECT Id, Name FROM Contact WHERE Name = 'John Smith' LIMIT 1];
-        practitioner.AccountId = organizationAccount.Id;
-        update practitioner;
-
+        List<User> usersToInsert = new List<User>();
+        List<Contact> practitioners = [SELECT Id, LastName FROM Contact WHERE RecordType.Name = :PRACTITIONER_RECORDTYPE_NAME];
+        Profile practitionerProfile = [SELECT Id FROM Profile WHERE Name = :PRACTITIONER_PROFILE_NAME LIMIT 1];
         TestUserBuilder userBuilder = new TestUserBuilder();
-        users.add((userBuilder
-            .withUsername(PRACTITIONER_USERNAME)
-            .withContactId(practitioner.Id)
-            .withProfile([SELECT Id FROM Profile WHERE Name = :PRACTITIONER_PROFILE_NAME LIMIT 1].Id)
-            .withCommunityNickName(COMMUNITY_NICKNAME_TWO)
-            .withEmail(PARTNER_COMMUNITY_USER_EMAIL)
-            .insertRecord(true)
-            .build()));
+        for(Contact practitioner : practitioners) {
+            practitioner.AccountId = organizationAccount.Id;
+            usersToInsert.add((userBuilder
+                .withUsername(practitioner.LastName + PRACTITIONER_USERNAME)
+                .withContactId(practitioner.Id)
+                .withProfile(practitionerProfile.Id)
+                .withCommunityNickName(practitioner.LastName + COMMUNITY_NICKNAME_TWO)
+                .withEmail(PARTNER_COMMUNITY_USER_EMAIL)
+                .insertRecord(false)
+                .build())
+            );
+        }
+        update practitioners;
+        insert usersToInsert;
+        users.addAll(usersToInsert);
 
         return users[2];
     }

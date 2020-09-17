@@ -5,6 +5,7 @@ public class SESSION_ParentCourseSharing_TDTM_Test {
     private static final String ACCOUNT_BRANCH_RECORDTYPE = 'Branch';
     private static final String PRACTITIONER_LASTNAME = 'Smith';
     private static final String PRACTITIONER_LASTNAME_TWO = 'Jones';
+    private static final String PRACTITIONER_LASTNAME_THREE = 'White';
     private static final String PRACTITIONER_EMAIL_ADDRESS = 'partnerCommunityUser@ncttest.com';
     private static final String PRACTITIONER_PROFILE_NAME = 'Practitioner';
     private static final String PRACTITIONER_RECORDTYPE_NAME = 'Practitioner';
@@ -29,27 +30,29 @@ public class SESSION_ParentCourseSharing_TDTM_Test {
             dataFactory .buildOrganizationAccount('acc1')
                         .buildBranchAccount()
                         .buildPractitioner(PRACTITIONER_LASTNAME, PRACTITIONER_EMAIL_ADDRESS)
-                        .buildPractitioner(PRACTITIONER_LASTNAME_TWO, PRACTITIONER_EMAIL_ADDRESS);
+                        .buildPractitioner(PRACTITIONER_LASTNAME_TWO, PRACTITIONER_EMAIL_ADDRESS)
+                        .buildPractitioner(PRACTITIONER_LASTNAME_THREE, PRACTITIONER_EMAIL_ADDRESS);
             TestDataFactory.convertPractitionerToPartnerCommunityUser();
             dataFactory .buildPractitionerFeeRate()
                         .buildVenue()
                         .buildVirtualVenue('Virtual')
                         .buildRoom()
                         .buildLicenceToPractice()
-                        .buildCoursesWithSessions(COURSES_TO_CREATE, SESSIONS_TO_CREATE);
+                        .buildLicenceToPracticeForAllPractitioners()
+                        .buildCoursesWithSessionsWithNotMainPractitioner(COURSES_TO_CREATE, SESSIONS_TO_CREATE, false);
     }
 
     @isTest
     static void CourseDoesNotHaveSessions_SessionAssignedMainPractitionerInserted_CourseShareNotCreated() {
         List<Account> branchAccounts = [SELECT Id FROM Account WHERE RecordType.Name = :ACCOUNT_BRANCH_RECORDTYPE];
-        List<Contact> contacts = [SELECT Id FROM Contact WHERE RecordType.Name = :PRACTITIONER_RECORDTYPE_NAME];
+        List<Contact> practitioners = [SELECT Id FROM Contact WHERE RecordType.Name = :PRACTITIONER_RECORDTYPE_NAME];
         List<Venue__c> venues = [SELECT Id FROM Venue__c];
-        List<Licence_To_Practice__c> licencesToPractice = [SELECT Id FROM Licence_To_Practice__c WHERE Contact__c = :contacts[0].Id];
+        List<Licence_To_Practice__c> licencesToPractice = [SELECT Id FROM Licence_To_Practice__c WHERE Contact__c = :practitioners[0].Id];
 
         TestCourseBuilder courseBuilder = new TestCourseBuilder();
         Course__c course = courseBuilder
             .withAccount(branchAccounts[0])
-            .withPractitioner(contacts[0])
+            .withPractitioner(practitioners[0])
             .withMainVenue(venues[0])
             .withLicenceToPractice(licencesToPractice[0])
             .insertRecord(true)
@@ -60,7 +63,7 @@ public class SESSION_ParentCourseSharing_TDTM_Test {
             .withCourse(course)
             .withType(SESSION_TYPE_STANDARD)
             .withStatus(SESSION_STATUS_PROVISIONAL)
-            .withPractitioner(contacts[0])
+            .withPractitioner(practitioners[0])
             .withPractitionerLicence(licencesToPractice[0])
             .insertRecord(false)
             .build();
@@ -72,21 +75,22 @@ public class SESSION_ParentCourseSharing_TDTM_Test {
         Test.stopTest();
 
         List<Course__Share> courseSharesAfterSessionInserted = [SELECT Id FROM Course__Share WHERE ParentId = :course.Id];
-        System.assertEquals(courseSharesBeforeSessionInserted.size(), courseSharesAfterSessionInserted.size());
+        System.assertEquals(0, courseSharesBeforeSessionInserted.size());
+        System.assertEquals(0, courseSharesAfterSessionInserted.size());
     }
     
     @isTest
     static void PractitionerHasSessionsOnCourse_SessionAssignedPractitionerInserted_CourseShareNotCreated() {
-        List<Course__c> courses = [SELECT Id, Main_Practitioner__c FROM Course__c];
-        List<Contact> contacts = [SELECT Id FROM Contact WHERE Id = :courses[0].Main_Practitioner__c];
-        List<Licence_To_Practice__c> licencesToPractice = [SELECT Id FROM Licence_To_Practice__c WHERE Contact__c = :courses[0].Main_Practitioner__c];
+        List<Course__c> courses = [SELECT Id FROM Course__c];
+        List<Contact> practitioners = [SELECT Id FROM Contact WHERE LastName = :PRACTITIONER_LASTNAME_TWO AND recordType.Name = :PRACTITIONER_RECORDTYPE_NAME];
+        List<Licence_To_Practice__c> licencesToPractice = [SELECT Id FROM Licence_To_Practice__c WHERE Contact__c = :practitioners[0].Id];
 
         TestSessionBuilder sessionBuilder = new TestSessionBuilder();
         Session__c session = sessionBuilder
             .withCourse(courses[0])
             .withType(SESSION_TYPE_STANDARD)
             .withStatus(SESSION_STATUS_PROVISIONAL)
-            .withPractitioner(contacts[0])
+            .withPractitioner(practitioners[0])
             .withPractitionerLicence(licencesToPractice[0])
             .insertRecord(false)
             .build();
@@ -98,47 +102,35 @@ public class SESSION_ParentCourseSharing_TDTM_Test {
         Test.stopTest();
 
         List<Course__Share> courseSharesAfterSessionInserted = [SELECT Id FROM Course__Share WHERE ParentId IN :courses];
-        System.assertEquals(courseSharesBeforeSessionInserted.size(), courseSharesAfterSessionInserted.size());
+        System.assertEquals(1, courseSharesBeforeSessionInserted.size());
+        System.assertEquals(1, courseSharesAfterSessionInserted.size());
+        
     }
 
     @isTest
     static void PractitionersChangedOnCourseSessions_CourseShares_AssignedNewPractitionersInserted_AssignedOldPractitionersDeleted() {
         List<Course__c> courses = [SELECT Id, Main_Practitioner__c FROM Course__c];
-        Contact practitionerTwo = [SELECT Id, FirstName, LastName, Email FROM Contact WHERE LastName = :PRACTITIONER_LASTNAME_TWO LIMIT 1];
+        Contact practitionerThree = [SELECT Id, FirstName, LastName, Email FROM Contact WHERE LastName = :PRACTITIONER_LASTNAME_THREE LIMIT 1];
+        User user = [SELECT Id FROM User WHERE ContactId = :practitionerThree.Id LIMIT 1];
         Account partnerAccount = [SELECT Id FROM Account WHERE IsPartner = true LIMIT 1];
+        List<Licence_To_Practice__c> licencesToPractice = [SELECT Id FROM Licence_To_Practice__c WHERE Contact__c = :practitionerThree.Id];
 
-        practitionerTwo.AccountId = partnerAccount.Id;
-        update practitionerTwo;
+        practitionerThree.AccountId = partnerAccount.Id;
+        update practitionerThree;
 
-        TestLicenceToPracticeBuilder licenceToPracticeBuilder = new TestLicenceToPracticeBuilder();
-        Licence_To_Practice__c licenceToPractice = licenceToPracticeBuilder
-            .withContact(practitionerTwo)
-            .insertRecord(true)
-            .build();
-
-        TestUserBuilder userBuilder = new TestUserBuilder();
-        User user = userBuilder
-            .withUsername(practitionerTwo.LastName + practitionerTwo.LastName + '@ncttest.com')
-            .withContactId(practitionerTwo.Id)
-            .withProfile([SELECT Id FROM Profile WHERE Name = :PRACTITIONER_PROFILE_NAME LIMIT 1].Id)
-            .withCommunityNickName(practitionerTwo.LastName + practitionerTwo.LastName)
-            .withEmail(practitionerTwo.Email)
-            .insertRecord(true)
-            .build();
-        
         List<Course__Share> courseSharesBeforeSessionsUpdated = [SELECT Id FROM Course__Share WHERE ParentId IN :courses];
         List<Session__c> sessions = [SELECT Id, Practitioner__c, Practitioner_Licence__c FROM Session__c WHERE Course__c IN :courses];
 
         Test.startTest();
         for (Session__c session : sessions) {
-            session.Practitioner__c = practitionerTwo.Id;
-            session.Practitioner_Licence__c = licenceToPractice.id;
+            session.Practitioner__c = practitionerThree.Id;
+            session.Practitioner_Licence__c = licencesToPractice[0].Id;
         }
         update sessions;
         Test.stopTest();
 
         List<Course__Share> courseSharesAfterSessionsUpdated = [SELECT UserOrGroupId FROM Course__Share WHERE ParentId IN :courses];
-        System.assertEquals(0, courseSharesBeforeSessionsUpdated.size());
+        System.assertEquals(1, courseSharesBeforeSessionsUpdated.size());
         System.assertEquals(1, courseSharesAfterSessionsUpdated.size());
         for (Course__Share courseShare : courseSharesAfterSessionsUpdated) {
             System.assertEquals(user.Id, courseShare.UserOrGroupId);            
@@ -147,7 +139,7 @@ public class SESSION_ParentCourseSharing_TDTM_Test {
 
     @isTest
     static void PractitionerHasSessionsOnCourse_NotLastSessionDeleted_CourseShareNotDeleted() {
-        List<Course__c> courses = [SELECT Id, Main_Practitioner__c FROM Course__c];
+        List<Course__c> courses = [SELECT Id FROM Course__c];
         List<Course__Share> courseSharesBeforeSessionDeleted = [SELECT Id FROM Course__Share WHERE ParentId IN :courses];
         List<Session__c> sessions = [SELECT Id FROM Session__c WHERE Course__c IN :courses];
 
@@ -156,12 +148,13 @@ public class SESSION_ParentCourseSharing_TDTM_Test {
         Test.stopTest();
 
         List<Course__Share> courseSharesAfterSessionDeleted = [SELECT Id FROM Course__Share WHERE ParentId IN :courses];
-        System.assertEquals(courseSharesBeforeSessionDeleted.size(), courseSharesAfterSessionDeleted.size());
+        System.assertEquals(1, courseSharesBeforeSessionDeleted.size());
+        System.assertEquals(1, courseSharesAfterSessionDeleted.size());
     }
 
     @isTest
     static void PractitionerHasSessionsOnCourse_AllSessionsDeleted_CourseShareDeleted() {
-        List<Course__c> courses = [SELECT Id, Main_Practitioner__c FROM Course__c];
+        List<Course__c> courses = [SELECT Id FROM Course__c];
         List<Session__c> sessions = [SELECT Id FROM Session__c WHERE Course__c IN :courses];
 
         Test.startTest();

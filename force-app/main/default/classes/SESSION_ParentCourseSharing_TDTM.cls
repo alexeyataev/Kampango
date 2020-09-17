@@ -135,13 +135,17 @@ global with sharing class SESSION_ParentCourseSharing_TDTM extends npsp.TDTM_Run
             }
         }
 
-        for (Course__Share courseShare : [
+        // @SuppressWarnings('PMD.ApexCRUDViolation')
+        //Incident #156 - https://confluence.nct.org.uk:8443/x/EoSO
+        List<Course__Share> existingCourseSharings = [
             SELECT ParentId, UserOrGroupId
             FROM Course__Share
             WHERE ParentId IN :userIdsByCourseIds.keySet() 
                 AND UserOrGroupId IN :userIds
             WITH SECURITY_ENFORCED
-        ]) {
+        ];
+
+        for (Course__Share courseShare : existingCourseSharings) {
             if (userIdsByCourseIds.containsKey(courseShare.ParentId) && userIdsByCourseIds.get(courseShare.ParentId).contains(courseShare.UserOrGroupId)) {
                 for (Id userId : userIdsByCourseIds.get(courseShare.ParentId)) {
                     if (userId == courseShare.UserOrGroupId) {
@@ -196,7 +200,6 @@ global with sharing class SESSION_ParentCourseSharing_TDTM extends npsp.TDTM_Run
                 }
             }
         }
-
         return [
             SELECT ParentId, UserOrGroupId 
             FROM Course__Share

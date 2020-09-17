@@ -60,6 +60,16 @@ requiredTriggerHandlersMap.put (
 );
 
 requiredTriggerHandlersMap.put (
+    'SESSION_ParentCourseSharing_TDTM',
+    new npsp__Trigger_Handler__c (
+        npsp__Object__c = 'Session__c',
+        npsp__Trigger_Action__c = getValidActionString(new String[] { AfterInsert, AfterUpdate, AfterDelete }),
+        npsp__Load_Order__c = 4,
+        npsp__Active__c = true
+    )
+);
+
+requiredTriggerHandlersMap.put (
     'Task_PreventDeletion_TDTM',
     new npsp__Trigger_Handler__c (
         npsp__Object__c = 'Task',
@@ -98,6 +108,7 @@ requiredTriggerHandlersMap.put (
         npsp__Active__c = true
     )
 );
+
 
 List<npsp__Trigger_Handler__c> existingTriggerHandlers = [
     SELECT npsp__Class__c
