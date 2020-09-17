@@ -6,7 +6,7 @@ private class BacsSendRemittanceEmailsTest {
     private final static String EMAIL_STATUS_SENT = '3';
     @TestSetup
     static void setupTestData(){
-        Bacs_Send_Remittance_Emails_Settings__c bacsSettings = new Bacs_Send_Remittance_Emails_Settings__c();
+        Bacs_Remittance_Settings__c bacsSettings = new Bacs_Remittance_Settings__c();
         bacsSettings.Email_Template_Developer_Name__c = 'BACSRemittanceEmail';
         bacsSettings.Org_Wide_Email_Address__c = 'noreply-parentforce@nct.org.uk';
         insert bacsSettings;
@@ -64,6 +64,7 @@ private class BacsSendRemittanceEmailsTest {
         BacsSendRemittanceEmailsHelper.sendEmails(new List<List<Payment_Run_Line_Item__c>> {prliList});
         Test.stopTest();
         List<Payment_Run_Line_Item__c> prliUpdatedList = [SELECT Is_Email_Sent__c FROM Payment_Run_Line_Item__c WHERE Id IN : prliList];
+        System.assert(prliUpdatedList.size() > 0);
         for(Payment_Run_Line_Item__c prli : prliUpdatedList) {
             System.assertEquals(prli.Is_Email_Sent__c, true);
         }
