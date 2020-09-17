@@ -79,14 +79,13 @@ global with sharing class SESSION_ParentCourseSharing_TDTM extends npsp.TDTM_Run
         @SuppressWarnings('PMD.ApexCRUDViolation')
         //Incident #154 - https://confluence.nct.org.uk:8443/x/EoSO
         List<Course__c> coursesWithSessions = [
-            SELECT Id, (
+            SELECT Id, Main_Practitioner__c, (
                 SELECT Practitioner__c 
                 FROM Sessions__r 
                 WHERE Practitioner__c IN :practitionerIds
                 )
             FROM Course__c
             WHERE Id IN :courseIds
-                AND Main_Practitioner__c NOT IN :practitionerIds
             WITH SECURITY_ENFORCED
         ];
 
@@ -95,6 +94,9 @@ global with sharing class SESSION_ParentCourseSharing_TDTM extends npsp.TDTM_Run
         if (!userIdsByPractitionerIds.isEmpty()) {
             for (Course__c course : coursesWithSessions) {
                 for (Session__c session : course.Sessions__r) {
+                    if (session.Practitioner__c == course.Main_Practitioner__c) {
+                        continue;
+                    }
                     if (userIdsByCourseIds.containsKey(course.Id)) {
                         userIdsByCourseIds.get(course.Id).add(userIdsByPractitionerIds.get(session.Practitioner__c));        
                     } else {
