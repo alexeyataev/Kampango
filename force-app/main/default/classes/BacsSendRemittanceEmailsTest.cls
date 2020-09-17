@@ -3,7 +3,6 @@
 @isTest
 private class BacsSendRemittanceEmailsTest {
     private final static String TYPE_PURCHASE_INVOICE = 'Purchase Invoice';
-    private final static String SUPPLIER_ACCOUNT_EMAIL = 'test@gmail.com';
     private final static String EMAIL_STATUS_SENT = '3';
     @TestSetup
     static void setupTestData(){
@@ -16,7 +15,7 @@ private class BacsSendRemittanceEmailsTest {
             .withName('Tom Genet')
             .withType('Supplier')
             .withAccountNumber('869343')
-            .withBillingEmail(SUPPLIER_ACCOUNT_EMAIL)
+            .withBillingEmail('test@gmail.com')
             .withBankSortCode('572899')
             .withBankAccountNumber('03456123')
             .withBankAccountName('TEST BANK ACCOUNT')
@@ -68,7 +67,5 @@ private class BacsSendRemittanceEmailsTest {
         for(Payment_Run_Line_Item__c prli : prliUpdatedList) {
             System.assertEquals(prli.Is_Email_Sent__c, true);
         }
-        EmailMessage emailMessageSent = [SELECT Id, Status, ToAddress FROM EmailMessage WHERE ToAddress =: SUPPLIER_ACCOUNT_EMAIL];
-        System.assertEquals(emailMessageSent.Status, EMAIL_STATUS_SENT);
     }
 }
