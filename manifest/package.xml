@@ -485,6 +485,7 @@
     <types>
         <members>NCT_Templates/Adhoc_Payment_Confirmation</members>
         <members>NCT_Templates/Adhoc_Payment_Notification</members>
+        <members>NCT_Templates/BACSRemittanceEmail</members>
         <members>NCT_Templates/Booking_Confirmation_Email</members>
         <members>NCT_Templates/Booking_Created</members>
         <members>NCT_Templates/Booking_Payment_Details</members>
