@@ -181,7 +181,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>TotalActualIncome__c</field>
+                <field>Total_Actual_Income__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>

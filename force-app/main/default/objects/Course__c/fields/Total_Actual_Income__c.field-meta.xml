@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>TotalActualIncome__c</fullName>
+    <fullName>Total_Actual_Income__c</fullName>
     <externalId>false</externalId>
     <formula>TotalCourseFeeIncome__c + TotalOtherIncome__c</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
