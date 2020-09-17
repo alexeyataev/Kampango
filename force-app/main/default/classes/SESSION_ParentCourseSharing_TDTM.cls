@@ -132,7 +132,6 @@ global with sharing class SESSION_ParentCourseSharing_TDTM extends npsp.TDTM_Run
             FROM Course__Share
             WHERE ParentId IN :userIdsByCourseIds.keySet() 
                 AND UserOrGroupId IN :userIds
-                AND RowCause != :GUEST_RULE_REASON
             WITH SECURITY_ENFORCED
         ]) {
             if (userIdsByCourseIds.containsKey(courseShare.ParentId) && userIdsByCourseIds.get(courseShare.ParentId).contains(courseShare.UserOrGroupId)) {
