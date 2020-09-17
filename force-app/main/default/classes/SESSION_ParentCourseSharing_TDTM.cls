@@ -1,7 +1,6 @@
 @SuppressWarnings('PMD.AvoidGlobalModifier')
 //Incident #150 - https://confluence.nct.org.uk:8443/x/EoSO
-global with sharing class SESSION_ParentCourseSharing_TDTM extends npsp.TDTM_Runnable {
-    private static final String GUEST_RULE_REASON = 'GuestRule';    
+global with sharing class SESSION_ParentCourseSharing_TDTM extends npsp.TDTM_Runnable {  
     private static final String APEX_SHARING_REASON_SESSION_PRACTITIONER = 'Session_Practitioner__c';
     private static final String ACCESS_LEVEL_READ = 'Read';
     private Map<Id, Id> userIdsByPractitionerIds = new Map<Id,Id>();
@@ -88,6 +87,7 @@ global with sharing class SESSION_ParentCourseSharing_TDTM extends npsp.TDTM_Run
                     )
                 FROM Course__c
                 WHERE Id IN :courseIds
+                    AND Main_Practitioner__c NOT IN :practitionerIds
                 WITH SECURITY_ENFORCED
             ]) {
                 for (Session__c session : course.Sessions__r) {
@@ -195,7 +195,6 @@ global with sharing class SESSION_ParentCourseSharing_TDTM extends npsp.TDTM_Run
             FROM Course__Share
             WHERE ParentId IN :practitionerIdsByCourseIds.keySet() 
                 AND UserOrGroupId IN :userIdsByPractitionerIds.values()
-                AND RowCause != :GUEST_RULE_REASON
             WITH SECURITY_ENFORCED
         ];
     }    

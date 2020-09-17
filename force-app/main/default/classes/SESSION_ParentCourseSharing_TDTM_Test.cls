@@ -22,21 +22,21 @@ public class SESSION_ParentCourseSharing_TDTM_Test {
 
     @TestSetup
     private static void SetupTestData() {
-    TestDataFactory.createTriggerSystemHandlerRecord(TRIGGER_PARAMS);
-    TestDataFactory dataFactory = TestDataFactory.getInstance();
-        dataFactory .buildOrganizationAccount('acc1')
-                    .buildBranchAccount()
-                    .buildPractitioner(PRACTITIONER_LASTNAME, PRACTITIONER_EMAIL_ADDRESS)
-                    .buildPractitioner(PRACTITIONER_LASTNAME_TWO, PRACTITIONER_EMAIL_ADDRESS);
-        TestDataFactory.convertPractitionerToPartnerCommunityUser();
-        dataFactory .buildPractitionerFeeRate()
-                    .buildVenue()
-                    .buildVirtualVenue('Virtual')
-                    .buildRoom()
-                    .buildLicenceToPractice()
-                    .buildCoursesWithSessions(COURSES_TO_CREATE, SESSIONS_TO_CREATE);
+        TestDataFactory.createTriggerSystemHandlerRecord(TRIGGER_PARAMS);
+        TestDataFactory dataFactory = TestDataFactory.getInstance();
+            dataFactory .buildOrganizationAccount('acc1')
+                        .buildBranchAccount()
+                        .buildPractitioner(PRACTITIONER_LASTNAME, PRACTITIONER_EMAIL_ADDRESS)
+                        .buildPractitioner(PRACTITIONER_LASTNAME_TWO, PRACTITIONER_EMAIL_ADDRESS);
+            TestDataFactory.convertPractitionerToPartnerCommunityUser();
+            dataFactory .buildPractitionerFeeRate()
+                        .buildVenue()
+                        .buildVirtualVenue('Virtual')
+                        .buildRoom()
+                        .buildLicenceToPractice()
+                        .buildCoursesWithSessions(COURSES_TO_CREATE, SESSIONS_TO_CREATE);
     }
-
+    
     @isTest
     static void PractitionerHasSessionsOnCourse_SessionInserted_NewCourseShareNotCreated() {
         List<Course__c> courses = [SELECT Id, Main_Practitioner__c FROM Course__c];
@@ -64,9 +64,13 @@ public class SESSION_ParentCourseSharing_TDTM_Test {
     }
 
     @isTest
-    static void PractitionersChangedOnCourseSessions_CourseShares_AssignedMewPractitionersInserted_AssignedOldPractitionersDeleted() {
+    static void PractitionersChangedOnCourseSessions_CourseShares_AssignedNewPractitionersInserted_AssignedOldPractitionersDeleted() {
         List<Course__c> courses = [SELECT Id, Main_Practitioner__c FROM Course__c];
         Contact practitionerTwo = [SELECT Id, FirstName, LastName, Email FROM Contact WHERE LastName = :PRACTITIONER_LASTNAME_TWO LIMIT 1];
+        Account partnerAccount = [SELECT Id FROM Account WHERE IsPartner = true LIMIT 1];
+
+        practitionerTwo.AccountId = partnerAccount.Id;
+        update practitionerTwo;
 
         TestLicenceToPracticeBuilder licenceToPracticeBuilder = new TestLicenceToPracticeBuilder();
         Licence_To_Practice__c licenceToPractice = licenceToPracticeBuilder
@@ -83,7 +87,7 @@ public class SESSION_ParentCourseSharing_TDTM_Test {
             .withEmail(practitionerTwo.Email)
             .insertRecord(true)
             .build();
-
+        
         List<Course__Share> courseSharesBeforeSessionsUpdated = [SELECT Id FROM Course__Share WHERE ParentId IN :courses];
         List<Session__c> sessions = [SELECT Id, Practitioner__c, Practitioner_Licence__c FROM Session__c WHERE Course__c IN :courses];
 
