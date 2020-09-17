@@ -45,7 +45,7 @@ private class dlrs_BookingTest
     {
         // Force the dlrs_BookingTrigger to be invoked, fails the test if org config or other Apex code prevents this.
         Course__c courseBeforeRecalculations = [
-            SELECT Id, Total_Actual_Income__c, Fee__c
+            SELECT Id, Total_Course_Booking_Income__c, Fee__c
             FROM Course__c
             LIMIT 1
         ];
@@ -72,12 +72,12 @@ private class dlrs_BookingTest
         Test.stopTest();
 
         Course__c courseAfterRecalculations = [
-            SELECT Id, Total_Actual_Income__c
+            SELECT Id, Total_Course_Booking_Income__c
             FROM Course__c
             LIMIT 1
         ];
 
-        System.assertEquals(0, courseBeforeRecalculations.Total_Actual_Income__c);
-        System.assertEquals(courseBeforeRecalculations.Fee__c * bookings.size(), courseAfterRecalculations.Total_Actual_Income__c);
+        System.assertEquals(0, courseBeforeRecalculations.Total_Course_Booking_Income__c);
+        System.assertEquals(courseBeforeRecalculations.Fee__c * bookings.size(), courseAfterRecalculations.Total_Course_Booking_Income__c);
     }
 }
