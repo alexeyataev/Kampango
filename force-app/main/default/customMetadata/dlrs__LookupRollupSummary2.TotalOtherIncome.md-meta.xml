@@ -16,7 +16,7 @@
     </values>
     <values>
         <field>dlrs__AggregateResultField__c</field>
-        <value xsi:type="xsd:string">TotalOtherIncome__c</value>
+        <value xsi:type="xsd:string">Total_Other_Income__c</value>
     </values>
     <values>
         <field>dlrs__CalculationMode__c</field>

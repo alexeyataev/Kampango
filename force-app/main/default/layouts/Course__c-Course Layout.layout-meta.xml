@@ -185,11 +185,11 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>TotalCourseFeeIncome__c</field>
+                <field>Total_Course_Fee_Income__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>TotalOtherIncome__c</field>
+                <field>Total_Other_Income__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
