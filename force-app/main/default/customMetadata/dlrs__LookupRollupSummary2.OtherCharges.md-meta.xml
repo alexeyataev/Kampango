@@ -52,7 +52,7 @@
     </values>
     <values>
         <field>dlrs__RelationshipCriteriaFields__c</field>
-        <value xsi:nil="true"/>
+        <value xsi:type="xsd:string">Zumzum__Status__c</value>
     </values>
     <values>
         <field>dlrs__RelationshipCriteria__c</field>

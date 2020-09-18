@@ -25,6 +25,7 @@
         <members>ZumzumBACSremittanceEmailsActionTest</members>
         <members>ZumzumBACSremittanceEmailsBatch</members>
         <members>dlrs_Batch_Receipt_Report_ItemTest</members>
+        <members>dlrs_BookingTest</members>
         <members>dlrs_Estimated_CostsTest</members>
         <members>dlrs_Zumzum_Purchase_Invoice_Linea4aTest</members>
         <members>dlrs_Zumzum_Purchase_InvoiceTest</members>

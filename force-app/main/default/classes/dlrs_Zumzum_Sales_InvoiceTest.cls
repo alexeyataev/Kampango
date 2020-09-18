@@ -19,6 +19,15 @@ private class dlrs_Zumzum_Sales_InvoiceTest {
     private static final Decimal LINE_ITEM_AMOUNT_30 = 30.00;
     private static final Decimal LINE_ITEM_AMOUNT_40 = 40.00;
     private static final Decimal LINE_ITEM_AMOUNT_50 = 50.00;
+    private static final Map<String, String> BOOKING_TRIGGER_PARAMS = new Map<String, String>{
+        'triggerHandlerName' => 'Booking_Rollups_TDTM',
+        'className' => 'Booking_Rollups_TDTM',
+        'objectAPIName' => 'Booking__c',
+        'triggerActions' => 'AfterInsert;AfterUpdate',
+        'isActive' => 'true',
+        'loadOrder' => '1',
+        'isAsynchronous' => 'false'
+    };
     private static final Map<String, String> SI_TRIGGER_PARAMS = new Map<String, String>{
         'triggerHandlerName' => 'SalesInvoice_Rollups_TDTM',
         'className' => 'SalesInvoice_Rollups_TDTM',
@@ -40,6 +49,7 @@ private class dlrs_Zumzum_Sales_InvoiceTest {
 
     @testSetup
     static void testSetup() {
+        TestDataFactory.createTriggerSystemHandlerRecord(BOOKING_TRIGGER_PARAMS);
         TestDataFactory.createTriggerSystemHandlerRecord(SI_TRIGGER_PARAMS);
         TestDataFactory.createTriggerSystemHandlerRecord(SILI_TRIGGER_PARAMS);
         TestDataFactory dataFactory = TestDataFactory.getInstance();
@@ -150,10 +160,18 @@ private class dlrs_Zumzum_Sales_InvoiceTest {
         Test.startTest();
         Zumzum__Sales_Invoice__c salesInvoicePosted = [SELECT Id, Course_Place_Total__c FROM Zumzum__Sales_Invoice__c WHERE Zumzum__Status__c =: SALES_INVOICE_STATUS_POSTED LIMIT 1];
         Zumzum__Sales_Invoice__c salesInvoice = [SELECT Id, Course_Place_Total__c FROM Zumzum__Sales_Invoice__c WHERE Zumzum__Status__c !=: SALES_INVOICE_STATUS_POSTED LIMIT 1];
-        Booking__c booking = [SELECT Id, Actual_Fee_Charged__c FROM Booking__c LIMIT 1];
+        Booking__c booking = [SELECT Id, Status__c, Actual_Fee_Charged__c FROM Booking__c LIMIT 1];
         System.assertEquals(salesInvoicePosted.Course_Place_Total__c, 30);
         System.assertEquals(salesInvoice.Course_Place_Total__c, 50);
         System.assertEquals(booking.Actual_Fee_Charged__c, 30);
+        booking.Status__c = 'Confirmed';
+        update booking;
+        Course__c courseAfterRecalculations = [
+            SELECT Id, Total_Course_Booking_Income__c, Total_Course_Fee_Income__c, Total_Other_Income__c
+            FROM Course__c
+            LIMIT 1
+        ];
+        System.assertEquals(courseAfterRecalculations.Total_Course_Fee_Income__c + courseAfterRecalculations.Total_Other_Income__c, courseAfterRecalculations.Total_Course_Booking_Income__c);
         Test.stopTest();
     }
 }
