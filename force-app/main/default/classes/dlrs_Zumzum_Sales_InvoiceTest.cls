@@ -14,6 +14,7 @@ private class dlrs_Zumzum_Sales_InvoiceTest {
     private static final String SALES_INVOICE_STATUS_POSTED = 'Posted';
     private static final String PRODUCT_NAME_COURSE_PLACE = 'Course Place';
     private static final String PRODUCT_NAME_MEMBERSHIP_18_MONTH = 'Membership - 18 month';
+    private static final String PERMISSION_SET_NAME = 'Override_Booking_Validation';
     private static final Integer BANK_NOMINAL_ACCOUNT_CODE = 9401;
     private static final Integer LINE_ITEM_QUANTITY = 1;
     private static final Decimal LINE_ITEM_AMOUNT_30 = 30.00;
@@ -158,20 +159,26 @@ private class dlrs_Zumzum_Sales_InvoiceTest {
     @IsTest
     private static void testTrigger() {
         Test.startTest();
-        Zumzum__Sales_Invoice__c salesInvoicePosted = [SELECT Id, Course_Place_Total__c FROM Zumzum__Sales_Invoice__c WHERE Zumzum__Status__c =: SALES_INVOICE_STATUS_POSTED LIMIT 1];
-        Zumzum__Sales_Invoice__c salesInvoice = [SELECT Id, Course_Place_Total__c FROM Zumzum__Sales_Invoice__c WHERE Zumzum__Status__c !=: SALES_INVOICE_STATUS_POSTED LIMIT 1];
-        Booking__c booking = [SELECT Id, Status__c, Actual_Fee_Charged__c FROM Booking__c LIMIT 1];
-        System.assertEquals(salesInvoicePosted.Course_Place_Total__c, 30);
-        System.assertEquals(salesInvoice.Course_Place_Total__c, 50);
-        System.assertEquals(booking.Actual_Fee_Charged__c, 30);
-        booking.Status__c = 'Confirmed';
-        update booking;
-        Course__c courseAfterRecalculations = [
-            SELECT Id, Total_Course_Booking_Income__c, Total_Course_Fee_Income__c, Total_Other_Income__c
-            FROM Course__c
-            LIMIT 1
-        ];
-        System.assertEquals(courseAfterRecalculations.Total_Course_Fee_Income__c + courseAfterRecalculations.Total_Other_Income__c, courseAfterRecalculations.Total_Course_Booking_Income__c);
+        User user = [SELECT Id FROM User WHERE Id =: UserInfo.getUserId()];
+
+        System.runAs ( TestDataFactory.assignPermissionSetToUser(PERMISSION_SET_NAME, user) ) {
+            
+            Zumzum__Sales_Invoice__c salesInvoicePosted = [SELECT Id, Course_Place_Total__c FROM Zumzum__Sales_Invoice__c WHERE Zumzum__Status__c =: SALES_INVOICE_STATUS_POSTED LIMIT 1];
+            Zumzum__Sales_Invoice__c salesInvoice = [SELECT Id, Course_Place_Total__c FROM Zumzum__Sales_Invoice__c WHERE Zumzum__Status__c !=: SALES_INVOICE_STATUS_POSTED LIMIT 1];
+            Booking__c booking = [SELECT Id, Status__c, Actual_Fee_Charged__c FROM Booking__c LIMIT 1];
+            System.assertEquals(salesInvoicePosted.Course_Place_Total__c, 30);
+            System.assertEquals(salesInvoice.Course_Place_Total__c, 50);
+            System.assertEquals(booking.Actual_Fee_Charged__c, 30);
+            booking.Status__c = 'Confirmed';
+            update booking;
+            Course__c courseAfterRecalculations = [
+                SELECT Id, Total_Course_Booking_Income__c, Total_Course_Fee_Income__c, Total_Other_Income__c
+                FROM Course__c
+                LIMIT 1
+            ];
+            System.assertEquals(courseAfterRecalculations.Total_Course_Fee_Income__c + courseAfterRecalculations.Total_Other_Income__c, courseAfterRecalculations.Total_Course_Booking_Income__c);
+        
+        }
         Test.stopTest();
     }
 }
