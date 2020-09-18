@@ -27,7 +27,7 @@ public without sharing class BookingJourneyHelper {
         return contacts;
     }
 
-    @AuraEnabled(cacheable=true)
+    @AuraEnabled
     public static Individual retrieveMarketingPreferences(String individualId){
         List<Individual> individuals = new List<Individual>();
         if(String.isNotBlank(individualId)){
