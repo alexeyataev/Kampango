@@ -1105,7 +1105,6 @@
             <label>With Partner</label>
         </rules>
     </decisions>
-    <description>Last Stable v2</description>
     <dynamicChoiceSets>
         <name>Country_Picklist_Values</name>
         <dataType>Picklist</dataType>
