@@ -1,10 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <actionCalls>
+        <name>BacsSendRemittanceEmailsHelper</name>
+        <label>BacsSendRemittanceEmailsHelper</label>
+        <locationX>723</locationX>
+        <locationY>145</locationY>
+        <actionName>BacsSendRemittanceEmailsHelper</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>Show_status</targetReference>
+        </connector>
+        <inputParameters>
+            <name>prliList</name>
+            <value>
+                <elementReference>Get_Payment_Run_Line_Items</elementReference>
+            </value>
+        </inputParameters>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </actionCalls>
+    <actionCalls>
         <name>Show_status</name>
         <label>Show status</label>
-        <locationX>1107</locationX>
-        <locationY>203</locationY>
+        <locationX>766</locationX>
+        <locationY>374</locationY>
         <actionName>c:showToast</actionName>
         <actionType>component</actionType>
         <inputParameters>
@@ -31,7 +49,7 @@
         <name>MESSAGE_SUCCESS</name>
         <dataType>String</dataType>
         <value>
-            <stringValue>The emails were succesfully sent</stringValue>
+            <stringValue>Email sending has started</stringValue>
         </value>
     </constants>
     <constants>
@@ -58,8 +76,8 @@
     <decisions>
         <name>CheckPaymenRunStatus</name>
         <label>CheckPaymenRunStatus</label>
-        <locationX>362</locationX>
-        <locationY>379</locationY>
+        <locationX>381</locationX>
+        <locationY>380</locationY>
         <defaultConnector>
             <targetReference>WrongStatus</targetReference>
         </defaultConnector>
@@ -85,20 +103,6 @@ Version changes:
 V2. Added Payment Run Status Check</description>
     <interviewLabel>BACS Send Remittance Emails {!$Flow.CurrentDateTime}</interviewLabel>
     <label>BACS Send Remittance Emails</label>
-    <loops>
-        <name>Loop_For_items</name>
-        <label>Loop For items</label>
-        <locationX>773</locationX>
-        <locationY>191</locationY>
-        <collectionReference>Get_Payment_Run_Line_Items</collectionReference>
-        <iterationOrder>Asc</iterationOrder>
-        <nextValueConnector>
-            <targetReference>Process_Payment_Run_Line_Item_record</targetReference>
-        </nextValueConnector>
-        <noMoreValuesConnector>
-            <targetReference>Update_Line_Item_Is_Sent_True</targetReference>
-        </noMoreValuesConnector>
-    </loops>
     <processMetadataValues>
         <name>BuilderType</name>
         <value>
@@ -115,11 +119,11 @@ V2. Added Payment Run Status Check</description>
     <recordLookups>
         <name>Get_Payment_Run_Line_Items</name>
         <label>Get Payment Run Line Items</label>
-        <locationX>629</locationX>
-        <locationY>260</locationY>
+        <locationX>535</locationX>
+        <locationY>230</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Loop_For_items</targetReference>
+            <targetReference>BacsSendRemittanceEmailsHelper</targetReference>
         </connector>
         <filters>
             <field>Is_Email_Sent__c</field>
@@ -154,8 +158,8 @@ V2. Added Payment Run Status Check</description>
     <recordLookups>
         <name>GetPaymentStatus</name>
         <label>GetPaymentStatus</label>
-        <locationX>203</locationX>
-        <locationY>377</locationY>
+        <locationX>222</locationX>
+        <locationY>378</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>CheckPaymenRunStatus</targetReference>
@@ -173,21 +177,11 @@ V2. Added Payment Run Status Check</description>
         <queriedFields>Status__c</queriedFields>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
-    <recordUpdates>
-        <name>Update_Line_Item_Is_Sent_True</name>
-        <label>Update Line Item Is Sent True</label>
-        <locationX>939</locationX>
-        <locationY>101</locationY>
-        <connector>
-            <targetReference>Show_status</targetReference>
-        </connector>
-        <inputReference>paymentRunLineItemsUpdate</inputReference>
-    </recordUpdates>
     <screens>
         <name>Send_Remittance_Emails</name>
         <label>Send Remittance Emails</label>
-        <locationX>371</locationX>
-        <locationY>149</locationY>
+        <locationX>390</locationX>
+        <locationY>150</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
@@ -205,8 +199,8 @@ V2. Added Payment Run Status Check</description>
     <screens>
         <name>WrongStatus</name>
         <label>WrongStatus</label>
-        <locationX>547</locationX>
-        <locationY>378</locationY>
+        <locationX>566</locationX>
+        <locationY>379</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
@@ -219,55 +213,13 @@ V2. Added Payment Run Status Check</description>
         <showHeader>false</showHeader>
     </screens>
     <start>
-        <locationX>31</locationX>
-        <locationY>147</locationY>
+        <locationX>50</locationX>
+        <locationY>148</locationY>
         <connector>
             <targetReference>GetPaymentStatus</targetReference>
         </connector>
     </start>
     <status>Active</status>
-    <subflows>
-        <name>Process_Payment_Run_Line_Item_record</name>
-        <label>Process Payment Run Line Item record</label>
-        <locationX>773</locationX>
-        <locationY>410</locationY>
-        <connector>
-            <targetReference>Loop_For_items</targetReference>
-        </connector>
-        <flowName>BACS_Send_Remittance_Emails_Assistant</flowName>
-        <inputAssignments>
-            <name>paymentRunLineItem</name>
-            <value>
-                <elementReference>Loop_For_items</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <name>paymentRunLineItemsToUpdate</name>
-            <value>
-                <elementReference>paymentRunLineItemsUpdate</elementReference>
-            </value>
-        </inputAssignments>
-        <outputAssignments>
-            <assignToReference>paymentRunLineItem</assignToReference>
-            <name>paymentRunLineItem</name>
-        </outputAssignments>
-        <outputAssignments>
-            <assignToReference>paymentRunLineItemsUpdate</assignToReference>
-            <name>paymentRunLineItemsToUpdate</name>
-        </outputAssignments>
-    </subflows>
-    <textTemplates>
-        <name>BACSRemittanceEmail</name>
-        <text>Dear Sir/Madam
-
-A remittance of £{!Loop_For_items.Paid_Amount__c} has been sent to your designated bank account today. If you do not receive it within 3 working days please let us know by replying to finance@nct.org.uk. The amount is payment for the following:
-
-{!Loop_For_items.Reference_Info__c}
-
-Kind regards
-
-NCT</text>
-    </textTemplates>
     <variables>
         <name>action_result_message</name>
         <dataType>String</dataType>
@@ -314,6 +266,14 @@ NCT</text>
         <isInput>false</isInput>
         <isOutput>false</isOutput>
         <objectType>Payment_Run_Line_Item__c</objectType>
+    </variables>
+    <variables>
+        <name>PRLI_Size</name>
+        <dataType>Number</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <scale>0</scale>
     </variables>
     <variables>
         <name>recordId</name>
