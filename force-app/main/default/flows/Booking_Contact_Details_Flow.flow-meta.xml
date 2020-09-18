@@ -3,31 +3,31 @@
     <assignments>
         <name>Assign_Booking_Data_for_Booking_Journey_Client</name>
         <label>Assign Booking Data for Booking Journey Client</label>
-        <locationX>1390</locationX>
-        <locationY>998</locationY>
+        <locationX>1384</locationX>
+        <locationY>1007</locationY>
         <assignmentItems>
-            <assignToReference>Booking_Contact_Details_Params.bookingRecord.How_Heard__c</assignToReference>
+            <assignToReference>Booking_Record_Output_Param.How_Heard__c</assignToReference>
             <operator>Assign</operator>
             <value>
                 <elementReference>BJ_HowDidHear_Picklist</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
-            <assignToReference>Booking_Contact_Details_Params.bookingRecord.Birth_Due_Date__c</assignToReference>
+            <assignToReference>Booking_Record_Output_Param.Birth_Due_Date__c</assignToReference>
             <operator>Assign</operator>
             <value>
                 <elementReference>Booking_Record_Input_Param.Birth_Due_Date__c</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
-            <assignToReference>Booking_Contact_Details_Params.bookingRecord.Id</assignToReference>
+            <assignToReference>Booking_Record_Output_Param.Id</assignToReference>
             <operator>Assign</operator>
             <value>
                 <elementReference>Booking_Record_Input_Param.Id</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
-            <assignToReference>Booking_Contact_Details_Params.bookingRecord.Under_18__c</assignToReference>
+            <assignToReference>Booking_Record_Output_Param.Under_18__c</assignToReference>
             <operator>Assign</operator>
             <value>
                 <elementReference>BJ_Under_18_Checkbox</elementReference>
@@ -40,24 +40,24 @@
     <assignments>
         <name>Assign_Booking_Data_for_QuickBooks_Client</name>
         <label>Assign Booking Data for QuickBooks Client</label>
-        <locationX>1370</locationX>
-        <locationY>10</locationY>
+        <locationX>1204</locationX>
+        <locationY>11</locationY>
         <assignmentItems>
-            <assignToReference>Booking_Contact_Details_Params.bookingRecord.How_Heard__c</assignToReference>
+            <assignToReference>Booking_Record_Output_Param.How_Heard__c</assignToReference>
             <operator>Assign</operator>
             <value>
                 <elementReference>QB_HowDidHear_Picklist</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
-            <assignToReference>Booking_Contact_Details_Params.bookingRecord.Birth_Due_Date__c</assignToReference>
+            <assignToReference>Booking_Record_Output_Param.Birth_Due_Date__c</assignToReference>
             <operator>Assign</operator>
             <value>
                 <elementReference>QB_BirthDueDate_Input_Date</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
-            <assignToReference>Booking_Contact_Details_Params.bookingRecord.Under_18__c</assignToReference>
+            <assignToReference>Booking_Record_Output_Param.Under_18__c</assignToReference>
             <operator>Assign</operator>
             <value>
                 <elementReference>QB_Under_18_Checkbox</elementReference>
@@ -68,76 +68,43 @@
         </connector>
     </assignments>
     <assignments>
-        <name>Assign_Booking_Journey_Boolean_Property_2</name>
-        <label>Assign Booking Journey Boolean Property</label>
-        <locationX>2269</locationX>
-        <locationY>612</locationY>
-        <assignmentItems>
-            <assignToReference>Booking_Contact_Details_Params.isWithPartner</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <booleanValue>true</booleanValue>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>Booking_Contact_Details_Params.isQuickBooking</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <booleanValue>false</booleanValue>
-            </value>
-        </assignmentItems>
-    </assignments>
-    <assignments>
-        <name>Assign_Booking_Journey_Boolean_Property_2_0_0_0_0</name>
-        <label>Assign Booking Journey Boolean Property</label>
-        <locationX>2272</locationX>
-        <locationY>857</locationY>
-        <assignmentItems>
-            <assignToReference>Booking_Contact_Details_Params.isWithPartner</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <booleanValue>false</booleanValue>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>Booking_Contact_Details_Params.isQuickBooking</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <booleanValue>false</booleanValue>
-            </value>
-        </assignmentItems>
-    </assignments>
-    <assignments>
         <name>Assign_Individual_Data_for_Booking_Journey_Client</name>
         <label>Assign Individual Data for Booking Journey Client</label>
-        <locationX>1532</locationX>
-        <locationY>997</locationY>
+        <locationX>1524</locationX>
+        <locationY>1007</locationY>
         <assignmentItems>
-            <assignToReference>Booking_Contact_Details_Params.individualRecord.Has_Opted_In_Email__c</assignToReference>
+            <assignToReference>Individual_Record_Output_Param.Has_Opted_In_Email__c</assignToReference>
             <operator>Assign</operator>
             <value>
-                <elementReference>Marketing_Preferences_Email</elementReference>
+                <elementReference>BJ_ContactDetails_MarketingPrefernces_Component.email</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
-            <assignToReference>Booking_Contact_Details_Params.individualRecord.Has_Opted_In_SMS__c</assignToReference>
+            <assignToReference>Individual_Record_Output_Param.Has_Opted_In_SMS__c</assignToReference>
             <operator>Assign</operator>
             <value>
-                <elementReference>Marketing_Preferences_Sms</elementReference>
+                <elementReference>BJ_ContactDetails_MarketingPrefernces_Component.sms</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
-            <assignToReference>Booking_Contact_Details_Params.individualRecord.Has_Opted_In_Post__c</assignToReference>
+            <assignToReference>Individual_Record_Output_Param.Has_Opted_In_Post__c</assignToReference>
             <operator>Assign</operator>
             <value>
-                <elementReference>Marketing_Preferences_Post</elementReference>
+                <elementReference>BJ_ContactDetails_MarketingPrefernces_Component.post</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
-            <assignToReference>Booking_Contact_Details_Params.individualRecord.Has_Opted_In_Telephone__c</assignToReference>
+            <assignToReference>Individual_Record_Output_Param.Has_Opted_In_Telephone__c</assignToReference>
             <operator>Assign</operator>
             <value>
-                <elementReference>Marketing_Preferences_Phone</elementReference>
+                <elementReference>BJ_ContactDetails_MarketingPrefernces_Component.phone</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>Individual_Record_Output_Param.Id</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Contact_Record_Input_Param.IndividualId</elementReference>
             </value>
         </assignmentItems>
         <connector>
@@ -147,31 +114,31 @@
     <assignments>
         <name>Assign_Individual_Data_for_QuickBooks_Client</name>
         <label>Assign Individual Data for QuickBooks Client</label>
-        <locationX>1507</locationX>
-        <locationY>10</locationY>
+        <locationX>1340</locationX>
+        <locationY>11</locationY>
         <assignmentItems>
-            <assignToReference>Booking_Contact_Details_Params.individualRecord.Has_Opted_In_Email__c</assignToReference>
+            <assignToReference>Individual_Record_Output_Param.Has_Opted_In_Email__c</assignToReference>
             <operator>Assign</operator>
             <value>
                 <elementReference>Marketing_Preferences_Email</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
-            <assignToReference>Booking_Contact_Details_Params.individualRecord.Has_Opted_In_SMS__c</assignToReference>
+            <assignToReference>Individual_Record_Output_Param.Has_Opted_In_SMS__c</assignToReference>
             <operator>Assign</operator>
             <value>
                 <elementReference>Marketing_Preferences_Sms</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
-            <assignToReference>Booking_Contact_Details_Params.individualRecord.Has_Opted_In_Post__c</assignToReference>
+            <assignToReference>Individual_Record_Output_Param.Has_Opted_In_Post__c</assignToReference>
             <operator>Assign</operator>
             <value>
                 <elementReference>Marketing_Preferences_Post</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
-            <assignToReference>Booking_Contact_Details_Params.individualRecord.Has_Opted_In_Telephone__c</assignToReference>
+            <assignToReference>Individual_Record_Output_Param.Has_Opted_In_Telephone__c</assignToReference>
             <operator>Assign</operator>
             <value>
                 <elementReference>Marketing_Preferences_Phone</elementReference>
@@ -184,31 +151,31 @@
     <assignments>
         <name>Assign_Partner_Contact</name>
         <label>Assign Partner Contact</label>
-        <locationX>1858</locationX>
-        <locationY>1219</locationY>
+        <locationX>1781</locationX>
+        <locationY>1218</locationY>
         <assignmentItems>
-            <assignToReference>Booking_Contact_Details_Params.partnerContact.Id</assignToReference>
+            <assignToReference>Partner_Contact_Record_Output_Param.Id</assignToReference>
             <operator>Assign</operator>
             <value>
                 <elementReference>Get_Partner_Contact_Record.Id</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
-            <assignToReference>Booking_Contact_Details_Params.partnerContact.FirstName</assignToReference>
+            <assignToReference>Partner_Contact_Record_Output_Param.FirstName</assignToReference>
             <operator>Assign</operator>
             <value>
                 <elementReference>BJ_EnquireBooking_Partner_Name.firstName</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
-            <assignToReference>Booking_Contact_Details_Params.partnerContact.LastName</assignToReference>
+            <assignToReference>Partner_Contact_Record_Output_Param.LastName</assignToReference>
             <operator>Assign</operator>
             <value>
                 <elementReference>BJ_EnquireBooking_Partner_Name.lastName</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
-            <assignToReference>Booking_Contact_Details_Params.partnerContact.Email</assignToReference>
+            <assignToReference>Partner_Contact_Record_Output_Param.Email</assignToReference>
             <operator>Assign</operator>
             <value>
                 <elementReference>BJ_WithPartnerEmail_Input_Text</elementReference>
@@ -221,24 +188,24 @@
     <assignments>
         <name>Assign_Partner_Contact_Data_for_BookingJourney_Client</name>
         <label>Assign Partner Contact Data for BookingJourney Client</label>
-        <locationX>1670</locationX>
-        <locationY>991</locationY>
+        <locationX>1667</locationX>
+        <locationY>1008</locationY>
         <assignmentItems>
-            <assignToReference>Booking_Contact_Details_Params.partnerContact.FirstName</assignToReference>
+            <assignToReference>Partner_Contact_Record_Output_Param.FirstName</assignToReference>
             <operator>Assign</operator>
             <value>
                 <elementReference>BJ_Partner_FirstName_Input_Text</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
-            <assignToReference>Booking_Contact_Details_Params.partnerContact.LastName</assignToReference>
+            <assignToReference>Partner_Contact_Record_Output_Param.LastName</assignToReference>
             <operator>Assign</operator>
             <value>
                 <elementReference>BJ_Partner_LastName_Input_Text</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
-            <assignToReference>Booking_Contact_Details_Params.partnerContact.Email</assignToReference>
+            <assignToReference>Partner_Contact_Record_Output_Param.Email</assignToReference>
             <operator>Assign</operator>
             <value>
                 <elementReference>BJ_WithoutPartnerEmail_Input_Text</elementReference>
@@ -251,24 +218,24 @@
     <assignments>
         <name>Assign_Partner_Contact_Data_for_QuickBooks_Client</name>
         <label>Assign Partner Contact Data for QuickBooks Client</label>
-        <locationX>1641</locationX>
-        <locationY>10</locationY>
+        <locationX>1476</locationX>
+        <locationY>11</locationY>
         <assignmentItems>
-            <assignToReference>Booking_Contact_Details_Params.partnerContact.FirstName</assignToReference>
+            <assignToReference>Partner_Contact_Record_Output_Param.FirstName</assignToReference>
             <operator>Assign</operator>
             <value>
                 <elementReference>QB_PartnerFirstName_Input_Text</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
-            <assignToReference>Booking_Contact_Details_Params.partnerContact.LastName</assignToReference>
+            <assignToReference>Partner_Contact_Record_Output_Param.LastName</assignToReference>
             <operator>Assign</operator>
             <value>
                 <elementReference>QB_PartnerLastName_Input_Text</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
-            <assignToReference>Booking_Contact_Details_Params.partnerContact.Email</assignToReference>
+            <assignToReference>Partner_Contact_Record_Output_Param.Email</assignToReference>
             <operator>Assign</operator>
             <value>
                 <elementReference>QB_ParthnerEmail_Input_Text</elementReference>
@@ -281,94 +248,87 @@
     <assignments>
         <name>Assign_Primary_Contact_Data_for_Booking_Journey_Client</name>
         <label>Assign Primary Contact Data for Booking Journey Client</label>
-        <locationX>1246</locationX>
-        <locationY>996</locationY>
+        <locationX>1248</locationX>
+        <locationY>1004</locationY>
         <assignmentItems>
-            <assignToReference>Booking_Contact_Details_Params.primaryContact.FirstName</assignToReference>
+            <assignToReference>Primary_Contact_Record_Output_Param.FirstName</assignToReference>
             <operator>Assign</operator>
             <value>
-                <elementReference>Contact_Record_Input_Param.FirstName</elementReference>
+                <elementReference>BJ_EnquireBooking_Primary_Name.firstName</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
-            <assignToReference>Booking_Contact_Details_Params.primaryContact.LastName</assignToReference>
+            <assignToReference>Primary_Contact_Record_Output_Param.LastName</assignToReference>
             <operator>Assign</operator>
             <value>
-                <elementReference>Contact_Record_Input_Param.LastName</elementReference>
+                <elementReference>BJ_EnquireBooking_Primary_Name.lastName</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
-            <assignToReference>Booking_Contact_Details_Params.primaryContact.Salutation</assignToReference>
+            <assignToReference>Primary_Contact_Record_Output_Param.Salutation</assignToReference>
             <operator>Assign</operator>
             <value>
-                <elementReference>Contact_Record_Input_Param.Salutation</elementReference>
+                <elementReference>BJ_EnquireBooking_Primary_Name.salutation</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
-            <assignToReference>Booking_Contact_Details_Params.primaryContact.Email</assignToReference>
+            <assignToReference>Primary_Contact_Record_Output_Param.Email</assignToReference>
             <operator>Assign</operator>
             <value>
                 <elementReference>BJ_Email_Text_Input</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
-            <assignToReference>Booking_Contact_Details_Params.primaryContact.HomePhone</assignToReference>
+            <assignToReference>Primary_Contact_Record_Output_Param.HomePhone</assignToReference>
             <operator>Assign</operator>
             <value>
                 <elementReference>BJ_HomePhone_Input_Text</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
-            <assignToReference>Booking_Contact_Details_Params.primaryContact.MobilePhone</assignToReference>
+            <assignToReference>Primary_Contact_Record_Output_Param.MobilePhone</assignToReference>
             <operator>Assign</operator>
             <value>
                 <elementReference>BJ_MobilePhone_Input_Text</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
-            <assignToReference>Booking_Contact_Details_Params.primaryContact.MailingStreet</assignToReference>
+            <assignToReference>Primary_Contact_Record_Output_Param.MailingStreet</assignToReference>
             <operator>Assign</operator>
             <value>
                 <elementReference>BJ_Street_Input_Text</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
-            <assignToReference>Booking_Contact_Details_Params.primaryContact.MailingCity</assignToReference>
+            <assignToReference>Primary_Contact_Record_Output_Param.MailingCity</assignToReference>
             <operator>Assign</operator>
             <value>
                 <elementReference>BJ_City_Input_Text</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
-            <assignToReference>Booking_Contact_Details_Params.primaryContact.MailingState</assignToReference>
+            <assignToReference>Primary_Contact_Record_Output_Param.MailingState</assignToReference>
             <operator>Assign</operator>
             <value>
                 <elementReference>BJ_StateProvince_Input_Text</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
-            <assignToReference>Booking_Contact_Details_Params.primaryContact.MailingPostalCode</assignToReference>
+            <assignToReference>Primary_Contact_Record_Output_Param.MailingPostalCode</assignToReference>
             <operator>Assign</operator>
             <value>
                 <elementReference>BJ_ZipPostalCode_Input_Text</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
-            <assignToReference>Booking_Contact_Details_Params.primaryContact.Country__c</assignToReference>
+            <assignToReference>Primary_Contact_Record_Output_Param.Country__c</assignToReference>
             <operator>Assign</operator>
             <value>
                 <elementReference>BJ_Country_Picklist</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
-            <assignToReference>Booking_Contact_Details_Params.primaryContact.npe01__PreferredPhone__c</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>BJ_PreferredPhone_Picklist</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>Booking_Contact_Details_Params.primaryContact.Id</assignToReference>
+            <assignToReference>Primary_Contact_Record_Output_Param.Id</assignToReference>
             <operator>Assign</operator>
             <value>
                 <elementReference>Contact_Record_Input_Param.Id</elementReference>
@@ -388,6 +348,13 @@
                 <booleanValue>false</booleanValue>
             </value>
         </assignmentItems>
+        <assignmentItems>
+            <assignToReference>Primary_Contact_Record_Output_Param.npe01__PreferredPhone__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>BJ_PreferredPhone_Picklist</elementReference>
+            </value>
+        </assignmentItems>
         <connector>
             <targetReference>Assign_Booking_Data_for_Booking_Journey_Client</targetReference>
         </connector>
@@ -395,87 +362,87 @@
     <assignments>
         <name>Assign_Primary_Contact_Data_for_QuickBooks_Client</name>
         <label>Assign Primary Contact Data for QuickBooks Client</label>
-        <locationX>1230</locationX>
+        <locationX>1064</locationX>
         <locationY>10</locationY>
         <assignmentItems>
-            <assignToReference>Booking_Contact_Details_Params.primaryContact.FirstName</assignToReference>
+            <assignToReference>Primary_Contact_Record_Output_Param.FirstName</assignToReference>
             <operator>Assign</operator>
             <value>
                 <elementReference>QB_FirstName_Input_Text</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
-            <assignToReference>Booking_Contact_Details_Params.primaryContact.LastName</assignToReference>
+            <assignToReference>Primary_Contact_Record_Output_Param.LastName</assignToReference>
             <operator>Assign</operator>
             <value>
                 <elementReference>QB_LastName_Input_Text</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
-            <assignToReference>Booking_Contact_Details_Params.primaryContact.Salutation</assignToReference>
+            <assignToReference>Primary_Contact_Record_Output_Param.Salutation</assignToReference>
             <operator>Assign</operator>
             <value>
                 <elementReference>Salutation_Values</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
-            <assignToReference>Booking_Contact_Details_Params.primaryContact.Email</assignToReference>
+            <assignToReference>Primary_Contact_Record_Output_Param.Email</assignToReference>
             <operator>Assign</operator>
             <value>
                 <elementReference>QB_Email_Text_Input</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
-            <assignToReference>Booking_Contact_Details_Params.primaryContact.HomePhone</assignToReference>
+            <assignToReference>Primary_Contact_Record_Output_Param.HomePhone</assignToReference>
             <operator>Assign</operator>
             <value>
                 <elementReference>QB_HomePhone_Input_Text</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
-            <assignToReference>Booking_Contact_Details_Params.primaryContact.MobilePhone</assignToReference>
+            <assignToReference>Primary_Contact_Record_Output_Param.MobilePhone</assignToReference>
             <operator>Assign</operator>
             <value>
                 <elementReference>QB_MobilePhone_Input_Text</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
-            <assignToReference>Booking_Contact_Details_Params.primaryContact.MailingStreet</assignToReference>
+            <assignToReference>Primary_Contact_Record_Output_Param.MailingStreet</assignToReference>
             <operator>Assign</operator>
             <value>
                 <elementReference>QB_Street_Input_Text</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
-            <assignToReference>Booking_Contact_Details_Params.primaryContact.MailingCity</assignToReference>
+            <assignToReference>Primary_Contact_Record_Output_Param.MailingCity</assignToReference>
             <operator>Assign</operator>
             <value>
                 <elementReference>QB_City_Input_Text</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
-            <assignToReference>Booking_Contact_Details_Params.primaryContact.MailingState</assignToReference>
+            <assignToReference>Primary_Contact_Record_Output_Param.MailingState</assignToReference>
             <operator>Assign</operator>
             <value>
                 <elementReference>QB_StateProvince_Input_Text</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
-            <assignToReference>Booking_Contact_Details_Params.primaryContact.MailingPostalCode</assignToReference>
+            <assignToReference>Primary_Contact_Record_Output_Param.MailingPostalCode</assignToReference>
             <operator>Assign</operator>
             <value>
                 <elementReference>QB_ZipPostalCode_Input_Text</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
-            <assignToReference>Booking_Contact_Details_Params.primaryContact.Country__c</assignToReference>
+            <assignToReference>Primary_Contact_Record_Output_Param.Country__c</assignToReference>
             <operator>Assign</operator>
             <value>
                 <elementReference>QB_Country_Picklist</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
-            <assignToReference>Booking_Contact_Details_Params.primaryContact.npe01__PreferredPhone__c</assignToReference>
+            <assignToReference>Primary_Contact_Record_Output_Param.npe01__PreferredPhone__c</assignToReference>
             <operator>Assign</operator>
             <value>
                 <elementReference>QB_PreferredPhone_Picklist</elementReference>
@@ -488,55 +455,45 @@
                 <booleanValue>false</booleanValue>
             </value>
         </assignmentItems>
-        <connector>
-            <targetReference>Assign_Booking_Data_for_QuickBooks_Client</targetReference>
-        </connector>
-    </assignments>
-    <assignments>
-        <name>Assign_Quick_Book_Boolean_Properties_With_Partner</name>
-        <label>Assign Quick Book Boolean Properties With Partner</label>
-        <locationX>2057</locationX>
-        <locationY>152</locationY>
         <assignmentItems>
-            <assignToReference>Booking_Contact_Details_Params.isQuickBooking</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <booleanValue>true</booleanValue>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>Booking_Contact_Details_Params.isWithPartner</assignToReference>
+            <assignToReference>Do_We_Neet_To_Display_How_Heard_Error_Message</assignToReference>
             <operator>Assign</operator>
             <value>
                 <booleanValue>false</booleanValue>
             </value>
         </assignmentItems>
+        <connector>
+            <targetReference>Assign_Booking_Data_for_QuickBooks_Client</targetReference>
+        </connector>
     </assignments>
     <assignments>
-        <name>Assign_Quick_Book_Boolean_Properties_Without_Partner</name>
-        <label>Assign Quick Book Boolean Properties Without Partner</label>
-        <locationX>2249</locationX>
-        <locationY>371</locationY>
+        <name>Pre_populated_Phone_Information</name>
+        <label>Pre-populated Phone Information.</label>
+        <locationX>1083</locationX>
+        <locationY>767</locationY>
         <assignmentItems>
-            <assignToReference>Booking_Contact_Details_Params.isQuickBooking</assignToReference>
+            <assignToReference>Primary_Contact_Record_Output_Param.HomePhone</assignToReference>
             <operator>Assign</operator>
             <value>
-                <booleanValue>true</booleanValue>
+                <elementReference>Contact_Record_Input_Param.HomePhone</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
-            <assignToReference>Booking_Contact_Details_Params.isWithPartner</assignToReference>
+            <assignToReference>Primary_Contact_Record_Output_Param.MobilePhone</assignToReference>
             <operator>Assign</operator>
             <value>
-                <booleanValue>true</booleanValue>
+                <elementReference>Contact_Record_Input_Param.MobilePhone</elementReference>
             </value>
         </assignmentItems>
+        <connector>
+            <targetReference>BJ_Contact_Details_Scree</targetReference>
+        </connector>
     </assignments>
     <assignments>
         <name>QB_Set_Display_Partner_Error_to_True</name>
         <label>Set Display Partner Error to True</label>
-        <locationX>1631</locationX>
-        <locationY>298</locationY>
+        <locationX>1467</locationX>
+        <locationY>299</locationY>
         <assignmentItems>
             <assignToReference>Do_We_Need_To_Dispaly_Partner_Error</assignToReference>
             <operator>Assign</operator>
@@ -549,10 +506,26 @@
         </connector>
     </assignments>
     <assignments>
-        <name>Set_Display_Partner_Error_to_True_0_0</name>
+        <name>QB_Set_Display_Partner_Error_to_True_0</name>
+        <label>Set Display Partner Error to True</label>
+        <locationX>1474</locationX>
+        <locationY>481</locationY>
+        <assignmentItems>
+            <assignToReference>Do_We_Neet_To_Display_How_Heard_Error_Message</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>QB_Contact_Details_Screen</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Set_Display_Partner_Error_to_True</name>
         <label>Set Display Partner Error to True</label>
         <locationX>1538</locationX>
-        <locationY>703</locationY>
+        <locationY>704</locationY>
         <assignmentItems>
             <assignToReference>Do_We_Need_To_Dispaly_Partner_Error</assignToReference>
             <operator>Assign</operator>
@@ -568,8 +541,8 @@
         <description>By default this variable is False</description>
         <name>Set_Quick_Booking_Boolean_Value_to_True</name>
         <label>Set Quick Booking Boolean Value to True</label>
-        <locationX>992</locationX>
-        <locationY>290</locationY>
+        <locationX>938</locationX>
+        <locationY>299</locationY>
         <assignmentItems>
             <assignToReference>Is_Quick_Booking_Boolean_Value</assignToReference>
             <operator>Assign</operator>
@@ -584,7 +557,7 @@
     <assignments>
         <name>Set_With_Partner_Bool_Value_to_True</name>
         <label>Set With Partner Bool Value to True</label>
-        <locationX>1060</locationX>
+        <locationX>1082</locationX>
         <locationY>1003</locationY>
         <assignmentItems>
             <assignToReference>With_Partner_Boolean_Value</assignToReference>
@@ -594,7 +567,7 @@
             </value>
         </assignmentItems>
         <connector>
-            <targetReference>BJ_Contact_Details_Scree</targetReference>
+            <targetReference>Pre_populated_Phone_Information</targetReference>
         </connector>
     </assignments>
     <choices>
@@ -612,6 +585,14 @@
         <dataType>String</dataType>
         <value>
             <elementReference>Get_How_Heard_Value_By_Default</elementReference>
+        </value>
+    </choices>
+    <choices>
+        <name>How_Heard_None_Value</name>
+        <choiceText>--None--</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>None</stringValue>
         </value>
     </choices>
     <choices>
@@ -668,52 +649,52 @@
     <decisions>
         <name>BJ_Do_Need_To_Display_Partner_Error_1</name>
         <label>Do Need To Display Partner Error</label>
-        <locationX>1852</locationX>
-        <locationY>788</locationY>
+        <locationX>1840</locationX>
+        <locationY>800</locationY>
         <defaultConnector>
-            <targetReference>Set_Display_Partner_Error_to_True_0_0</targetReference>
+            <targetReference>Set_Display_Partner_Error_to_True</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>Display</defaultConnectorLabel>
         <rules>
             <name>BJ_Partner_Error_No_Display_1</name>
             <conditionLogic>(1 AND 2 AND 3) OR (4 AND 5 AND 6)</conditionLogic>
             <conditions>
-                <leftValueReference>Booking_Contact_Details_Params.partnerContact.FirstName</leftValueReference>
+                <leftValueReference>Partner_Contact_Record_Output_Param.FirstName</leftValueReference>
                 <operator>IsNull</operator>
                 <rightValue>
                     <booleanValue>true</booleanValue>
                 </rightValue>
             </conditions>
             <conditions>
-                <leftValueReference>Booking_Contact_Details_Params.partnerContact.LastName</leftValueReference>
+                <leftValueReference>Partner_Contact_Record_Output_Param.LastName</leftValueReference>
                 <operator>IsNull</operator>
                 <rightValue>
                     <booleanValue>true</booleanValue>
                 </rightValue>
             </conditions>
             <conditions>
-                <leftValueReference>Booking_Contact_Details_Params.partnerContact.Email</leftValueReference>
+                <leftValueReference>Partner_Contact_Record_Output_Param.Email</leftValueReference>
                 <operator>IsNull</operator>
                 <rightValue>
                     <booleanValue>true</booleanValue>
                 </rightValue>
             </conditions>
             <conditions>
-                <leftValueReference>Booking_Contact_Details_Params.partnerContact.FirstName</leftValueReference>
+                <leftValueReference>Partner_Contact_Record_Output_Param.FirstName</leftValueReference>
                 <operator>IsNull</operator>
                 <rightValue>
                     <booleanValue>false</booleanValue>
                 </rightValue>
             </conditions>
             <conditions>
-                <leftValueReference>Booking_Contact_Details_Params.partnerContact.LastName</leftValueReference>
+                <leftValueReference>Partner_Contact_Record_Output_Param.LastName</leftValueReference>
                 <operator>IsNull</operator>
                 <rightValue>
                     <booleanValue>false</booleanValue>
                 </rightValue>
             </conditions>
             <conditions>
-                <leftValueReference>Booking_Contact_Details_Params.partnerContact.Email</leftValueReference>
+                <leftValueReference>Partner_Contact_Record_Output_Param.Email</leftValueReference>
                 <operator>IsNull</operator>
                 <rightValue>
                     <booleanValue>false</booleanValue>
@@ -728,115 +709,98 @@
     <decisions>
         <name>BJ_Do_Need_To_Display_Partner_Error_2</name>
         <label>Do Need To Display Partner Error</label>
-        <locationX>1846</locationX>
-        <locationY>610</locationY>
+        <locationX>1843</locationX>
+        <locationY>683</locationY>
         <defaultConnector>
-            <targetReference>Set_Display_Partner_Error_to_True_0_0</targetReference>
+            <targetReference>Set_Display_Partner_Error_to_True</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>Display</defaultConnectorLabel>
         <rules>
             <name>BJ_Partner_Error_No_Display_2</name>
             <conditionLogic>(1 AND 2 AND 3) OR (4 AND 5 AND 6)</conditionLogic>
             <conditions>
-                <leftValueReference>Booking_Contact_Details_Params.partnerContact.FirstName</leftValueReference>
+                <leftValueReference>Partner_Contact_Record_Output_Param.FirstName</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
                     <stringValue/>
                 </rightValue>
             </conditions>
             <conditions>
-                <leftValueReference>Booking_Contact_Details_Params.partnerContact.LastName</leftValueReference>
+                <leftValueReference>Partner_Contact_Record_Output_Param.LastName</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
                     <stringValue/>
                 </rightValue>
             </conditions>
             <conditions>
-                <leftValueReference>Booking_Contact_Details_Params.partnerContact.Email</leftValueReference>
+                <leftValueReference>Partner_Contact_Record_Output_Param.Email</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
                     <stringValue/>
                 </rightValue>
             </conditions>
             <conditions>
-                <leftValueReference>Booking_Contact_Details_Params.partnerContact.FirstName</leftValueReference>
+                <leftValueReference>Partner_Contact_Record_Output_Param.FirstName</leftValueReference>
                 <operator>NotEqualTo</operator>
                 <rightValue>
                     <stringValue/>
                 </rightValue>
             </conditions>
             <conditions>
-                <leftValueReference>Booking_Contact_Details_Params.partnerContact.LastName</leftValueReference>
+                <leftValueReference>Partner_Contact_Record_Output_Param.LastName</leftValueReference>
                 <operator>NotEqualTo</operator>
                 <rightValue>
                     <stringValue/>
                 </rightValue>
             </conditions>
             <conditions>
-                <leftValueReference>Booking_Contact_Details_Params.partnerContact.Email</leftValueReference>
+                <leftValueReference>Partner_Contact_Record_Output_Param.Email</leftValueReference>
                 <operator>NotEqualTo</operator>
                 <rightValue>
                     <stringValue/>
                 </rightValue>
             </conditions>
-            <connector>
-                <targetReference>BJ_Is_Partner_Added</targetReference>
-            </connector>
             <label>No Display</label>
         </rules>
     </decisions>
     <decisions>
         <name>BJ_Do_Need_To_Display_Phone_Error</name>
         <label>Do Need To Display Phone Error</label>
-        <locationX>1526</locationX>
-        <locationY>868</locationY>
+        <locationX>1527</locationX>
+        <locationY>884</locationY>
         <defaultConnector>
             <targetReference>BJ_Do_Need_To_Display_Partner_Error_1</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>Not Diaplay</defaultConnectorLabel>
         <rules>
             <name>BJ_Display</name>
-            <conditionLogic>(1 AND (2 OR 3)) OR ((4 OR 5) AND 6)</conditionLogic>
+            <conditionLogic>(1 AND 2) OR (3 AND 4)</conditionLogic>
             <conditions>
-                <leftValueReference>Booking_Contact_Details_Params.primaryContact.npe01__PreferredPhone__c</leftValueReference>
+                <leftValueReference>Primary_Contact_Record_Output_Param.npe01__PreferredPhone__c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
                     <stringValue>Mobile</stringValue>
                 </rightValue>
             </conditions>
             <conditions>
-                <leftValueReference>Booking_Contact_Details_Params.primaryContact.MobilePhone</leftValueReference>
-                <operator>IsNull</operator>
-                <rightValue>
-                    <booleanValue>true</booleanValue>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <leftValueReference>Booking_Contact_Details_Params.primaryContact.MobilePhone</leftValueReference>
+                <leftValueReference>Primary_Contact_Record_Output_Param.MobilePhone</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
                     <stringValue/>
                 </rightValue>
             </conditions>
             <conditions>
-                <leftValueReference>Booking_Contact_Details_Params.primaryContact.HomePhone</leftValueReference>
-                <operator>IsNull</operator>
-                <rightValue>
-                    <booleanValue>true</booleanValue>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <leftValueReference>Booking_Contact_Details_Params.primaryContact.HomePhone</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <stringValue/>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <leftValueReference>Booking_Contact_Details_Params.primaryContact.npe01__PreferredPhone__c</leftValueReference>
+                <leftValueReference>Primary_Contact_Record_Output_Param.npe01__PreferredPhone__c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
                     <stringValue>Home</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>Primary_Contact_Record_Output_Param.HomePhone</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue/>
                 </rightValue>
             </conditions>
             <connector>
@@ -846,78 +810,34 @@
         </rules>
     </decisions>
     <decisions>
-        <name>BJ_Is_Partner_Added</name>
-        <label>BJ Is Partner Added ?</label>
-        <locationX>2048</locationX>
-        <locationY>716</locationY>
-        <defaultConnector>
-            <targetReference>Assign_Booking_Journey_Boolean_Property_2</targetReference>
-        </defaultConnector>
-        <defaultConnectorLabel>Default Value</defaultConnectorLabel>
+        <name>Check_How_Heard_Value</name>
+        <label>Check How Heard Value</label>
+        <locationX>1730</locationX>
+        <locationY>539</locationY>
+        <defaultConnectorLabel>Is Not None</defaultConnectorLabel>
         <rules>
-            <name>BJ_Partner_Is_Added</name>
+            <name>Is_None</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
-                <leftValueReference>With_Partner_Boolean_Value</leftValueReference>
+                <leftValueReference>QB_HowDidHear_Picklist</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
-                    <booleanValue>true</booleanValue>
+                    <elementReference>How_Heard_None_Value</elementReference>
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>Assign_Booking_Journey_Boolean_Property_2</targetReference>
+                <targetReference>QB_Set_Display_Partner_Error_to_True_0</targetReference>
             </connector>
-            <label>Partner Is Added</label>
-        </rules>
-        <rules>
-            <name>Couple_Not_Allow</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>Course_Record_Input_Param.Couples_Allowed__c</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <booleanValue>false</booleanValue>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>Assign_Booking_Journey_Boolean_Property_2_0_0_0_0</targetReference>
-            </connector>
-            <label>Couple Not Allow</label>
-        </rules>
-        <rules>
-            <name>With_Partner_And_Couple_Allow_is_True</name>
-            <conditionLogic>1 AND (2 OR 3)</conditionLogic>
-            <conditions>
-                <leftValueReference>Course_Record_Input_Param.Couples_Allowed__c</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <booleanValue>true</booleanValue>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <leftValueReference>Booking_Contact_Details_Params.partnerContact.LastName</leftValueReference>
-                <operator>EqualTo</operator>
-            </conditions>
-            <conditions>
-                <leftValueReference>Booking_Contact_Details_Params.partnerContact.LastName</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <stringValue/>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>Assign_Booking_Journey_Boolean_Property_2_0_0_0_0</targetReference>
-            </connector>
-            <label>Without Partner And Couple Allow is True</label>
+            <label>Is None</label>
         </rules>
     </decisions>
     <decisions>
         <name>Is_Couples_Allowed</name>
         <label>Is Couples Allowed ?</label>
-        <locationX>854</locationX>
-        <locationY>590</locationY>
+        <locationX>848</locationX>
+        <locationY>586</locationY>
         <defaultConnector>
-            <targetReference>BJ_Contact_Details_Scree</targetReference>
+            <targetReference>Pre_populated_Phone_Information</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>Not Couples Allowed</defaultConnectorLabel>
         <rules>
@@ -939,8 +859,8 @@
     <decisions>
         <name>Is_Partner_Added_By_Default</name>
         <label>Is Partner Added By Default</label>
-        <locationX>1536</locationX>
-        <locationY>1221</locationY>
+        <locationX>1516</locationX>
+        <locationY>1203</locationY>
         <defaultConnector>
             <targetReference>Assign_Partner_Contact_Data_for_BookingJourney_Client</targetReference>
         </defaultConnector>
@@ -989,8 +909,8 @@
     <decisions>
         <name>QB_Do_Need_To_Display_Partner_Error_1</name>
         <label>Do Need To Display Partner Error</label>
-        <locationX>1889</locationX>
-        <locationY>157</locationY>
+        <locationX>1723</locationX>
+        <locationY>158</locationY>
         <defaultConnector>
             <targetReference>QB_Set_Display_Partner_Error_to_True</targetReference>
         </defaultConnector>
@@ -999,42 +919,42 @@
             <name>QB_Partner_Error_No_Display_1</name>
             <conditionLogic>(1 AND 2 AND 3) OR (4 AND 5 AND 6)</conditionLogic>
             <conditions>
-                <leftValueReference>Booking_Contact_Details_Params.partnerContact.FirstName</leftValueReference>
+                <leftValueReference>Partner_Contact_Record_Output_Param.FirstName</leftValueReference>
                 <operator>IsNull</operator>
                 <rightValue>
                     <booleanValue>true</booleanValue>
                 </rightValue>
             </conditions>
             <conditions>
-                <leftValueReference>Booking_Contact_Details_Params.partnerContact.LastName</leftValueReference>
+                <leftValueReference>Partner_Contact_Record_Output_Param.LastName</leftValueReference>
                 <operator>IsNull</operator>
                 <rightValue>
                     <booleanValue>true</booleanValue>
                 </rightValue>
             </conditions>
             <conditions>
-                <leftValueReference>Booking_Contact_Details_Params.partnerContact.Email</leftValueReference>
+                <leftValueReference>Partner_Contact_Record_Output_Param.Email</leftValueReference>
                 <operator>IsNull</operator>
                 <rightValue>
                     <booleanValue>true</booleanValue>
                 </rightValue>
             </conditions>
             <conditions>
-                <leftValueReference>Booking_Contact_Details_Params.partnerContact.FirstName</leftValueReference>
+                <leftValueReference>Partner_Contact_Record_Output_Param.FirstName</leftValueReference>
                 <operator>IsNull</operator>
                 <rightValue>
                     <booleanValue>false</booleanValue>
                 </rightValue>
             </conditions>
             <conditions>
-                <leftValueReference>Booking_Contact_Details_Params.partnerContact.LastName</leftValueReference>
+                <leftValueReference>Partner_Contact_Record_Output_Param.LastName</leftValueReference>
                 <operator>IsNull</operator>
                 <rightValue>
                     <booleanValue>false</booleanValue>
                 </rightValue>
             </conditions>
             <conditions>
-                <leftValueReference>Booking_Contact_Details_Params.partnerContact.Email</leftValueReference>
+                <leftValueReference>Partner_Contact_Record_Output_Param.Email</leftValueReference>
                 <operator>IsNull</operator>
                 <rightValue>
                     <booleanValue>false</booleanValue>
@@ -1049,8 +969,8 @@
     <decisions>
         <name>QB_Do_Need_To_Display_Partner_Error_2</name>
         <label>Do Need To Display Partner Error</label>
-        <locationX>1887</locationX>
-        <locationY>374</locationY>
+        <locationX>1727</locationX>
+        <locationY>357</locationY>
         <defaultConnector>
             <targetReference>QB_Set_Display_Partner_Error_to_True</targetReference>
         </defaultConnector>
@@ -1059,49 +979,49 @@
             <name>QB_Partner_Error_No_Display_2</name>
             <conditionLogic>(1 AND 2 AND 3) OR (4 AND 5 AND 6)</conditionLogic>
             <conditions>
-                <leftValueReference>Booking_Contact_Details_Params.partnerContact.FirstName</leftValueReference>
+                <leftValueReference>Partner_Contact_Record_Output_Param.FirstName</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
                     <stringValue/>
                 </rightValue>
             </conditions>
             <conditions>
-                <leftValueReference>Booking_Contact_Details_Params.partnerContact.LastName</leftValueReference>
+                <leftValueReference>Partner_Contact_Record_Output_Param.LastName</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
                     <stringValue/>
                 </rightValue>
             </conditions>
             <conditions>
-                <leftValueReference>Booking_Contact_Details_Params.partnerContact.Email</leftValueReference>
+                <leftValueReference>Partner_Contact_Record_Output_Param.Email</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
                     <stringValue/>
                 </rightValue>
             </conditions>
             <conditions>
-                <leftValueReference>Booking_Contact_Details_Params.partnerContact.FirstName</leftValueReference>
+                <leftValueReference>Partner_Contact_Record_Output_Param.FirstName</leftValueReference>
                 <operator>NotEqualTo</operator>
                 <rightValue>
                     <stringValue/>
                 </rightValue>
             </conditions>
             <conditions>
-                <leftValueReference>Booking_Contact_Details_Params.partnerContact.LastName</leftValueReference>
+                <leftValueReference>Partner_Contact_Record_Output_Param.LastName</leftValueReference>
                 <operator>NotEqualTo</operator>
                 <rightValue>
                     <stringValue/>
                 </rightValue>
             </conditions>
             <conditions>
-                <leftValueReference>Booking_Contact_Details_Params.partnerContact.Email</leftValueReference>
+                <leftValueReference>Partner_Contact_Record_Output_Param.Email</leftValueReference>
                 <operator>NotEqualTo</operator>
                 <rightValue>
                     <stringValue/>
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>QB_Is_Partner_Added</targetReference>
+                <targetReference>Check_How_Heard_Value</targetReference>
             </connector>
             <label>No Display</label>
         </rules>
@@ -1109,8 +1029,8 @@
     <decisions>
         <name>QB_Do_Need_To_Display_Phone_Error</name>
         <label>Do Need To Display Phone Error</label>
-        <locationX>1631</locationX>
-        <locationY>156</locationY>
+        <locationX>1466</locationX>
+        <locationY>158</locationY>
         <defaultConnector>
             <targetReference>QB_Do_Need_To_Display_Partner_Error_1</targetReference>
         </defaultConnector>
@@ -1119,42 +1039,39 @@
             <name>Display</name>
             <conditionLogic>(1 AND (2 OR 3)) OR ((4 OR 5) AND 6)</conditionLogic>
             <conditions>
-                <leftValueReference>Booking_Contact_Details_Params.primaryContact.npe01__PreferredPhone__c</leftValueReference>
+                <leftValueReference>Primary_Contact_Record_Output_Param.npe01__PreferredPhone__c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
                     <stringValue>Mobile</stringValue>
                 </rightValue>
             </conditions>
             <conditions>
-                <leftValueReference>Booking_Contact_Details_Params.primaryContact.MobilePhone</leftValueReference>
+                <leftValueReference>Primary_Contact_Record_Output_Param.MobilePhone</leftValueReference>
                 <operator>IsNull</operator>
                 <rightValue>
                     <booleanValue>true</booleanValue>
                 </rightValue>
             </conditions>
             <conditions>
-                <leftValueReference>Booking_Contact_Details_Params.primaryContact.MobilePhone</leftValueReference>
+                <leftValueReference>Primary_Contact_Record_Output_Param.MobilePhone</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
                     <stringValue/>
                 </rightValue>
             </conditions>
             <conditions>
-                <leftValueReference>Booking_Contact_Details_Params.primaryContact.HomePhone</leftValueReference>
-                <operator>IsNull</operator>
+                <leftValueReference>Primary_Contact_Record_Output_Param.HomePhone</leftValueReference>
+                <operator>EqualTo</operator>
                 <rightValue>
                     <booleanValue>true</booleanValue>
                 </rightValue>
             </conditions>
             <conditions>
-                <leftValueReference>Booking_Contact_Details_Params.primaryContact.HomePhone</leftValueReference>
+                <leftValueReference>Primary_Contact_Record_Output_Param.HomePhone</leftValueReference>
                 <operator>EqualTo</operator>
-                <rightValue>
-                    <stringValue/>
-                </rightValue>
             </conditions>
             <conditions>
-                <leftValueReference>Booking_Contact_Details_Params.primaryContact.npe01__PreferredPhone__c</leftValueReference>
+                <leftValueReference>Primary_Contact_Record_Output_Param.npe01__PreferredPhone__c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
                     <stringValue>Home</stringValue>
@@ -1167,41 +1084,12 @@
         </rules>
     </decisions>
     <decisions>
-        <name>QB_Is_Partner_Added</name>
-        <label>QB Is Partner Added ?</label>
-        <locationX>2049</locationX>
-        <locationY>370</locationY>
-        <defaultConnector>
-            <targetReference>Assign_Quick_Book_Boolean_Properties_Without_Partner</targetReference>
-        </defaultConnector>
-        <defaultConnectorLabel>Partner Is Added</defaultConnectorLabel>
-        <rules>
-            <name>QB_Partner_Is_Not_Added</name>
-            <conditionLogic>or</conditionLogic>
-            <conditions>
-                <leftValueReference>Booking_Contact_Details_Params.partnerContact.LastName</leftValueReference>
-                <operator>EqualTo</operator>
-            </conditions>
-            <conditions>
-                <leftValueReference>Booking_Contact_Details_Params.partnerContact.LastName</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <stringValue/>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>Assign_Quick_Book_Boolean_Properties_With_Partner</targetReference>
-            </connector>
-            <label>Partner Is Not Added</label>
-        </rules>
-    </decisions>
-    <decisions>
         <name>With_Partner_API_Name</name>
         <label>With Partner ?</label>
-        <locationX>850</locationX>
-        <locationY>822</locationY>
+        <locationX>839</locationX>
+        <locationY>850</locationY>
         <defaultConnector>
-            <targetReference>BJ_Contact_Details_Scree</targetReference>
+            <targetReference>Pre_populated_Phone_Information</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>Without Partner</defaultConnectorLabel>
         <rules>
@@ -1217,7 +1105,7 @@
             <label>With Partner</label>
         </rules>
     </decisions>
-    <description>Last Stable v1</description>
+    <description>Last Stable v2</description>
     <dynamicChoiceSets>
         <name>Country_Picklist_Values</name>
         <dataType>Picklist</dataType>
@@ -1265,7 +1153,10 @@
         <dataType>String</dataType>
         <expression>IF ( ISBLANK({!Contact_Record_Input_Param.Id} ), 
    {!DO_NOT_REMEMBER_HOW_HEARD_VALUE}, 
-   TEXT({!Booking_Record_Input_Param.How_Heard__c})
+   IF (ISBLANK( TEXT({!Booking_Record_Input_Param.How_Heard__c})),
+     {!DO_NOT_REMEMBER_HOW_HEARD_VALUE}, 
+     TEXT({!Booking_Record_Input_Param.How_Heard__c})
+   )
 )</expression>
     </formulas>
     <formulas>
@@ -1273,7 +1164,10 @@
         <dataType>String</dataType>
         <expression>IF ( ISBLANK({!Contact_Record_Input_Param.Id} ), 
   {!PREFERRED_MOBILE_PHONE},
-  TEXT({!Contact_Record_Input_Param.npe01__PreferredPhone__c})
+  IF (ISBLANK(TEXT( {!Contact_Record_Input_Param.npe01__PreferredPhone__c} )) , 
+     {!PREFERRED_MOBILE_PHONE},
+     TEXT( {!Contact_Record_Input_Param.npe01__PreferredPhone__c} )
+  )
 )</expression>
     </formulas>
     <formulas>
@@ -1309,8 +1203,8 @@
         <description>Get course by Id to check &quot;Couples Allowed&quot; value if not then we will not display &quot;Add partner&quot; option.</description>
         <name>Get_Course_By_Id</name>
         <label>Get Course By Id</label>
-        <locationX>807</locationX>
-        <locationY>291</locationY>
+        <locationX>808</locationX>
+        <locationY>299</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Set_Quick_Booking_Boolean_Value_to_True</targetReference>
@@ -1358,11 +1252,12 @@
         <queriedFields>Email</queriedFields>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
+    <runInMode>DefaultMode</runInMode>
     <screens>
         <name>BJ_Contact_Details_Scree</name>
         <label>BJ Contact Details Screen</label>
-        <locationX>1239</locationX>
-        <locationY>710</locationY>
+        <locationX>1248</locationX>
+        <locationY>768</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
@@ -1476,7 +1371,7 @@
             <name>BJ_MobilePhone_Input_Text</name>
             <dataType>String</dataType>
             <defaultValue>
-                <elementReference>Contact_Record_Input_Param.MobilePhone</elementReference>
+                <elementReference>Primary_Contact_Record_Output_Param.MobilePhone</elementReference>
             </defaultValue>
             <fieldText>Mobile Phone</fieldText>
             <fieldType>InputField</fieldType>
@@ -1498,6 +1393,9 @@
                 <conditions>
                     <leftValueReference>BJ_MobilePhone_Input_Text</leftValueReference>
                     <operator>EqualTo</operator>
+                    <rightValue>
+                        <stringValue/>
+                    </rightValue>
                 </conditions>
                 <conditions>
                     <leftValueReference>BJ_PreferredPhone_Picklist</leftValueReference>
@@ -1512,7 +1410,7 @@
             <name>BJ_HomePhone_Input_Text</name>
             <dataType>String</dataType>
             <defaultValue>
-                <elementReference>Contact_Record_Input_Param.HomePhone</elementReference>
+                <elementReference>Primary_Contact_Record_Output_Param.HomePhone</elementReference>
             </defaultValue>
             <fieldText>Home Phone</fieldText>
             <fieldType>InputField</fieldType>
@@ -1534,6 +1432,9 @@
                 <conditions>
                     <leftValueReference>BJ_HomePhone_Input_Text</leftValueReference>
                     <operator>EqualTo</operator>
+                    <rightValue>
+                        <stringValue/>
+                    </rightValue>
                 </conditions>
                 <conditions>
                     <leftValueReference>BJ_PreferredPhone_Picklist</leftValueReference>
@@ -1720,7 +1621,7 @@
             <name>BJ_Partner_FirstName_Input_Text</name>
             <dataType>String</dataType>
             <defaultValue>
-                <elementReference>Booking_Contact_Details_Params.partnerContact.FirstName</elementReference>
+                <elementReference>Partner_Contact_Record_Output_Param.FirstName</elementReference>
             </defaultValue>
             <fieldText>First Name</fieldText>
             <fieldType>InputField</fieldType>
@@ -1747,7 +1648,7 @@
             <name>BJ_Partner_LastName_Input_Text</name>
             <dataType>String</dataType>
             <defaultValue>
-                <elementReference>Booking_Contact_Details_Params.partnerContact.LastName</elementReference>
+                <elementReference>Partner_Contact_Record_Output_Param.LastName</elementReference>
             </defaultValue>
             <fieldText>Last Name</fieldText>
             <fieldType>InputField</fieldType>
@@ -1774,7 +1675,7 @@
             <name>BJ_WithoutPartnerEmail_Input_Text</name>
             <dataType>String</dataType>
             <defaultValue>
-                <elementReference>Booking_Contact_Details_Params.partnerContact.Email</elementReference>
+                <elementReference>Partner_Contact_Record_Output_Param.Email</elementReference>
             </defaultValue>
             <fieldText>Email</fieldText>
             <fieldType>InputField</fieldType>
@@ -1875,22 +1776,7 @@
                 </value>
             </inputParameters>
             <isRequired>true</isRequired>
-            <outputParameters>
-                <assignToReference>Marketing_Preferences_Email</assignToReference>
-                <name>email</name>
-            </outputParameters>
-            <outputParameters>
-                <assignToReference>Marketing_Preferences_Sms</assignToReference>
-                <name>sms</name>
-            </outputParameters>
-            <outputParameters>
-                <assignToReference>Marketing_Preferences_Phone</assignToReference>
-                <name>phone</name>
-            </outputParameters>
-            <outputParameters>
-                <assignToReference>Marketing_Preferences_Post</assignToReference>
-                <name>post</name>
-            </outputParameters>
+            <storeOutputAutomatically>true</storeOutputAutomatically>
         </fields>
         <showFooter>true</showFooter>
         <showHeader>false</showHeader>
@@ -1898,8 +1784,8 @@
     <screens>
         <name>QB_Contact_Details_Screen</name>
         <label>QB Contact Details Screen</label>
-        <locationX>1228</locationX>
-        <locationY>164</locationY>
+        <locationX>1064</locationX>
+        <locationY>299</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
@@ -1928,7 +1814,7 @@
             <name>QB_FirstName_Input_Text</name>
             <dataType>String</dataType>
             <defaultValue>
-                <elementReference>Booking_Contact_Details_Params.primaryContact.FirstName</elementReference>
+                <elementReference>Primary_Contact_Record_Output_Param.FirstName</elementReference>
             </defaultValue>
             <fieldText>First Name</fieldText>
             <fieldType>InputField</fieldType>
@@ -1948,7 +1834,7 @@
             <name>QB_LastName_Input_Text</name>
             <dataType>String</dataType>
             <defaultValue>
-                <elementReference>Booking_Contact_Details_Params.primaryContact.LastName</elementReference>
+                <elementReference>Primary_Contact_Record_Output_Param.LastName</elementReference>
             </defaultValue>
             <fieldText>Last Name</fieldText>
             <fieldType>InputField</fieldType>
@@ -1988,7 +1874,7 @@
             <name>QB_Email_Text_Input</name>
             <dataType>String</dataType>
             <defaultValue>
-                <elementReference>Booking_Contact_Details_Params.primaryContact.Email</elementReference>
+                <elementReference>Primary_Contact_Record_Output_Param.Email</elementReference>
             </defaultValue>
             <fieldText>Email</fieldText>
             <fieldType>InputField</fieldType>
@@ -2012,56 +1898,10 @@
             <isRequired>true</isRequired>
         </fields>
         <fields>
-            <name>QB_MobilePhone_Input_Text</name>
-            <dataType>String</dataType>
-            <defaultValue>
-                <elementReference>Booking_Contact_Details_Params.primaryContact.MobilePhone</elementReference>
-            </defaultValue>
-            <fieldText>Mobile Phone</fieldText>
-            <fieldType>InputField</fieldType>
-            <isRequired>false</isRequired>
-            <validationRule>
-                <errorMessage>&lt;p&gt;{!RegExp_Number_Error_Validation_Message_Tmp}&lt;/p&gt;</errorMessage>
-                <formulaExpression>AND (
-  LEN( {!QB_MobilePhone_Input_Text} ) &lt; {!PREFERRED_PHONE_MAX_LENGTH},
-  ISNUMBER( {!QB_MobilePhone_Input_Text} ) 
-)</formulaExpression>
-            </validationRule>
-        </fields>
-        <fields>
-            <name>QB_MobileError_DisplayText</name>
-            <fieldText>&lt;p&gt;{!PreferredPhone_MobileError_Tmp}&lt;/p&gt;</fieldText>
-            <fieldType>DisplayText</fieldType>
-            <visibilityRule>
-                <conditionLogic>1 AND (2 OR 3)</conditionLogic>
-                <conditions>
-                    <leftValueReference>QB_PreferredPhone_Picklist</leftValueReference>
-                    <operator>EqualTo</operator>
-                    <rightValue>
-                        <elementReference>PREFERRED_MOBILE_PHONE</elementReference>
-                    </rightValue>
-                </conditions>
-                <conditions>
-                    <leftValueReference>QB_MobilePhone_Input_Text</leftValueReference>
-                    <operator>EqualTo</operator>
-                    <rightValue>
-                        <stringValue/>
-                    </rightValue>
-                </conditions>
-                <conditions>
-                    <leftValueReference>QB_MobilePhone_Input_Text</leftValueReference>
-                    <operator>IsNull</operator>
-                    <rightValue>
-                        <booleanValue>true</booleanValue>
-                    </rightValue>
-                </conditions>
-            </visibilityRule>
-        </fields>
-        <fields>
             <name>QB_HomePhone_Input_Text</name>
             <dataType>String</dataType>
             <defaultValue>
-                <elementReference>Booking_Contact_Details_Params.primaryContact.HomePhone</elementReference>
+                <elementReference>Primary_Contact_Record_Output_Param.HomePhone</elementReference>
             </defaultValue>
             <fieldText>Home Phone</fieldText>
             <fieldType>InputField</fieldType>
@@ -2079,7 +1919,7 @@
             <fieldText>&lt;p&gt;{!PreferredPhone_HomeError_Tmp}&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
             <visibilityRule>
-                <conditionLogic>1 AND (2 OR 3)</conditionLogic>
+                <conditionLogic>and</conditionLogic>
                 <conditions>
                     <leftValueReference>QB_PreferredPhone_Picklist</leftValueReference>
                     <operator>EqualTo</operator>
@@ -2094,11 +1934,43 @@
                         <stringValue/>
                     </rightValue>
                 </conditions>
+            </visibilityRule>
+        </fields>
+        <fields>
+            <name>QB_MobilePhone_Input_Text</name>
+            <dataType>String</dataType>
+            <defaultValue>
+                <elementReference>Primary_Contact_Record_Output_Param.MobilePhone</elementReference>
+            </defaultValue>
+            <fieldText>Mobile Phone</fieldText>
+            <fieldType>InputField</fieldType>
+            <isRequired>false</isRequired>
+            <validationRule>
+                <errorMessage>&lt;p&gt;{!RegExp_Number_Error_Validation_Message_Tmp}&lt;/p&gt;</errorMessage>
+                <formulaExpression>AND (
+  LEN( {!QB_MobilePhone_Input_Text} ) &lt; {!PREFERRED_PHONE_MAX_LENGTH},
+  ISNUMBER( {!QB_MobilePhone_Input_Text} ) 
+)</formulaExpression>
+            </validationRule>
+        </fields>
+        <fields>
+            <name>QB_MobileError_DisplayText</name>
+            <fieldText>&lt;p&gt;{!PreferredPhone_MobileError_Tmp}&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
                 <conditions>
-                    <leftValueReference>QB_HomePhone_Input_Text</leftValueReference>
-                    <operator>IsNull</operator>
+                    <leftValueReference>QB_PreferredPhone_Picklist</leftValueReference>
+                    <operator>EqualTo</operator>
                     <rightValue>
-                        <booleanValue>true</booleanValue>
+                        <elementReference>PREFERRED_MOBILE_PHONE</elementReference>
+                    </rightValue>
+                </conditions>
+                <conditions>
+                    <leftValueReference>QB_MobilePhone_Input_Text</leftValueReference>
+                    <operator>EqualTo</operator>
+                    <rightValue>
+                        <stringValue/>
                     </rightValue>
                 </conditions>
             </visibilityRule>
@@ -2112,7 +1984,7 @@
             <name>QB_Street_Input_Text</name>
             <dataType>String</dataType>
             <defaultValue>
-                <elementReference>Booking_Contact_Details_Params.primaryContact.MailingStreet</elementReference>
+                <elementReference>Primary_Contact_Record_Output_Param.MailingStreet</elementReference>
             </defaultValue>
             <fieldText>Street</fieldText>
             <fieldType>InputField</fieldType>
@@ -2122,7 +1994,7 @@
             <name>QB_City_Input_Text</name>
             <dataType>String</dataType>
             <defaultValue>
-                <elementReference>Booking_Contact_Details_Params.primaryContact.MailingCity</elementReference>
+                <elementReference>Primary_Contact_Record_Output_Param.MailingCity</elementReference>
             </defaultValue>
             <fieldText>City</fieldText>
             <fieldType>InputField</fieldType>
@@ -2132,7 +2004,7 @@
             <name>QB_StateProvince_Input_Text</name>
             <dataType>String</dataType>
             <defaultValue>
-                <elementReference>Booking_Contact_Details_Params.primaryContact.MailingState</elementReference>
+                <elementReference>Primary_Contact_Record_Output_Param.MailingState</elementReference>
             </defaultValue>
             <fieldText>State/Province</fieldText>
             <fieldType>InputField</fieldType>
@@ -2142,7 +2014,7 @@
             <name>QB_ZipPostalCode_Input_Text</name>
             <dataType>String</dataType>
             <defaultValue>
-                <elementReference>Booking_Contact_Details_Params.primaryContact.MailingPostalCode</elementReference>
+                <elementReference>Primary_Contact_Record_Output_Param.MailingPostalCode</elementReference>
             </defaultValue>
             <fieldText>Zip/Postal Code</fieldText>
             <fieldType>InputField</fieldType>
@@ -2151,7 +2023,9 @@
         <fields>
             <name>QB_Country_Picklist</name>
             <choiceReferences>Country_Picklist_Values</choiceReferences>
+            <choiceReferences>Default_Country_Value</choiceReferences>
             <dataType>String</dataType>
+            <defaultSelectedChoiceReference>Default_Country_Value</defaultSelectedChoiceReference>
             <fieldText>Country</fieldText>
             <fieldType>DropdownBox</fieldType>
             <isRequired>true</isRequired>
@@ -2215,7 +2089,7 @@
             <name>QB_PartnerFirstName_Input_Text</name>
             <dataType>String</dataType>
             <defaultValue>
-                <elementReference>Booking_Contact_Details_Params.partnerContact.FirstName</elementReference>
+                <elementReference>Partner_Contact_Record_Output_Param.FirstName</elementReference>
             </defaultValue>
             <fieldText>First Name</fieldText>
             <fieldType>InputField</fieldType>
@@ -2235,7 +2109,7 @@
             <name>QB_PartnerLastName_Input_Text</name>
             <dataType>String</dataType>
             <defaultValue>
-                <elementReference>Booking_Contact_Details_Params.partnerContact.LastName</elementReference>
+                <elementReference>Partner_Contact_Record_Output_Param.LastName</elementReference>
             </defaultValue>
             <fieldText>Last Name</fieldText>
             <fieldType>InputField</fieldType>
@@ -2255,7 +2129,7 @@
             <name>QB_ParthnerEmail_Input_Text</name>
             <dataType>String</dataType>
             <defaultValue>
-                <elementReference>Booking_Contact_Details_Params.partnerContact.Email</elementReference>
+                <elementReference>Partner_Contact_Record_Output_Param.Email</elementReference>
             </defaultValue>
             <fieldText>Email</fieldText>
             <fieldType>InputField</fieldType>
@@ -2298,11 +2172,26 @@
             </visibilityRule>
         </fields>
         <fields>
+            <name>HowHeardErrorMessage_DisplayText</name>
+            <fieldText>&lt;p&gt;{!How_Heard_Error_Message_Tmp}&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>Do_We_Neet_To_Display_How_Heard_Error_Message</leftValueReference>
+                    <operator>EqualTo</operator>
+                    <rightValue>
+                        <booleanValue>true</booleanValue>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
+        </fields>
+        <fields>
             <name>QB_HowDidHear_Picklist</name>
             <choiceReferences>HowDidHear_Picklist_Values</choiceReferences>
-            <choiceReferences>How_Heard_Defualt_Value</choiceReferences>
+            <choiceReferences>How_Heard_None_Value</choiceReferences>
             <dataType>String</dataType>
-            <defaultSelectedChoiceReference>How_Heard_Defualt_Value</defaultSelectedChoiceReference>
+            <defaultSelectedChoiceReference>How_Heard_None_Value</defaultSelectedChoiceReference>
             <fieldText>How did you hear about us?</fieldText>
             <fieldType>DropdownBox</fieldType>
             <isRequired>true</isRequired>
@@ -2311,30 +2200,6 @@
             <name>QB_ContactDetails_MarketingPrefernces_Component</name>
             <extensionName>c:marketingPreferencesComponent</extensionName>
             <fieldType>ComponentInstance</fieldType>
-            <inputParameters>
-                <name>email</name>
-                <value>
-                    <elementReference>Booking_Contact_Details_Params.individualRecord.Has_Opted_In_Email__c</elementReference>
-                </value>
-            </inputParameters>
-            <inputParameters>
-                <name>phone</name>
-                <value>
-                    <elementReference>Booking_Contact_Details_Params.individualRecord.Has_Opted_In_Telephone__c</elementReference>
-                </value>
-            </inputParameters>
-            <inputParameters>
-                <name>post</name>
-                <value>
-                    <elementReference>Booking_Contact_Details_Params.individualRecord.Has_Opted_In_Post__c</elementReference>
-                </value>
-            </inputParameters>
-            <inputParameters>
-                <name>sms</name>
-                <value>
-                    <elementReference>Booking_Contact_Details_Params.individualRecord.Has_Opted_In_SMS__c</elementReference>
-                </value>
-            </inputParameters>
             <isRequired>true</isRequired>
             <outputParameters>
                 <assignToReference>Marketing_Preferences_Email</assignToReference>
@@ -2357,8 +2222,8 @@
         <showHeader>false</showHeader>
     </screens>
     <start>
-        <locationX>50</locationX>
-        <locationY>478</locationY>
+        <locationX>151</locationX>
+        <locationY>414</locationY>
         <connector>
             <targetReference>Is_Quick_Booking</targetReference>
         </connector>
@@ -2380,16 +2245,20 @@
         <text>&lt;p&gt;&lt;span style=&quot;color: rgb(194, 57, 52); background-color: rgb(255, 255, 255);&quot;&gt;Please fill in partner information.﻿&lt;/span&gt;&lt;/p&gt;</text>
     </textTemplates>
     <textTemplates>
+        <name>How_Heard_Error_Message_Tmp</name>
+        <text>&lt;p&gt;&lt;span style=&quot;color: rgb(194, 57, 52); background-color: rgb(255, 255, 255);&quot;&gt;Please enter the value.&lt;/span&gt;&lt;/p&gt;</text>
+    </textTemplates>
+    <textTemplates>
         <name>Line_Tmp</name>
         <text>&lt;hr style=&apos;margin:0&apos;/&gt;</text>
     </textTemplates>
     <textTemplates>
         <name>Not_Valid_Email_Message_Tmp</name>
-        <text>&lt;p&gt;Please provide a valid email address.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;</text>
+        <text>&lt;p&gt;&lt;span style=&quot;color: rgb(194, 57, 52);&quot;&gt;Please provide a valid email address.&lt;/span&gt;&lt;/p&gt;</text>
     </textTemplates>
     <textTemplates>
         <name>PreferredPhone_HomeError_Tmp</name>
-        <text>&lt;p&gt;&lt;span style=&quot;color: rgb(194, 57, 52); background-color: rgb(255, 255, 255);&quot;&gt;You&apos;ve selected home phone as preferred phone. Please enter the value.&lt;/span&gt;&lt;/p&gt;</text>
+        <text>&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); color: rgb(194, 57, 52);&quot;&gt;You&apos;ve selected home phone as preferred phone. Please enter the value.&lt;/span&gt;&lt;/p&gt;</text>
     </textTemplates>
     <textTemplates>
         <name>PreferredPhone_MobileError_Tmp</name>
@@ -2410,20 +2279,19 @@
         <text>&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); font-size: 16px; color: rgb(62, 62, 60);&quot;&gt;﻿Who will be coming on the course with you?&lt;/span&gt;&lt;/p&gt;</text>
     </textTemplates>
     <variables>
-        <description>We use this Apex Class(Apex-Defined) to populate him and output.</description>
-        <name>Booking_Contact_Details_Params</name>
-        <apexClass>BookingFlowContactDetailsParams</apexClass>
-        <dataType>Apex</dataType>
-        <isCollection>false</isCollection>
-        <isInput>false</isInput>
-        <isOutput>true</isOutput>
-    </variables>
-    <variables>
         <name>Booking_Record_Input_Param</name>
         <dataType>SObject</dataType>
         <isCollection>false</isCollection>
         <isInput>true</isInput>
         <isOutput>false</isOutput>
+        <objectType>Booking__c</objectType>
+    </variables>
+    <variables>
+        <name>Booking_Record_Output_Param</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
         <objectType>Booking__c</objectType>
     </variables>
     <variables>
@@ -2461,6 +2329,24 @@
         <value>
             <booleanValue>false</booleanValue>
         </value>
+    </variables>
+    <variables>
+        <name>Do_We_Neet_To_Display_How_Heard_Error_Message</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <value>
+            <booleanValue>false</booleanValue>
+        </value>
+    </variables>
+    <variables>
+        <name>Individual_Record_Output_Param</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+        <objectType>Individual</objectType>
     </variables>
     <variables>
         <description>This is value using in Screen Component to display attribute by this condition (e.g IF Is_Quick_Booking_Boolean_Value == false then not display or display)</description>
@@ -2512,6 +2398,22 @@
         <value>
             <booleanValue>false</booleanValue>
         </value>
+    </variables>
+    <variables>
+        <name>Partner_Contact_Record_Output_Param</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+        <objectType>Contact</objectType>
+    </variables>
+    <variables>
+        <name>Primary_Contact_Record_Output_Param</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+        <objectType>Contact</objectType>
     </variables>
     <variables>
         <name>Quick_Booking_CourseId_Input_Param</name>
