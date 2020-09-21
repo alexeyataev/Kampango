@@ -25,6 +25,44 @@
             <name>bookingValidationCode</name>
         </outputParameters>
     </actionCalls>
+    <actionCalls>
+        <name>Update_Contact_Action</name>
+        <label>Update Contact Action</label>
+        <locationX>1167</locationX>
+        <locationY>73</locationY>
+        <actionName>BookingJourneyHelper</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>Booking_Main_Payment_Process_Flow</targetReference>
+        </connector>
+        <faultConnector>
+            <targetReference>Error_Handler_SubFlow</targetReference>
+        </faultConnector>
+        <inputParameters>
+            <name>bookingRecord</name>
+            <value>
+                <elementReference>Booking_Contact_Details_SubFlow.Booking_Record_Output_Param</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>individualRecord</name>
+            <value>
+                <elementReference>Booking_Contact_Details_SubFlow.Individual_Record_Output_Param</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>partnerContact</name>
+            <value>
+                <elementReference>Booking_Contact_Details_SubFlow.Partner_Contact_Record_Output_Param</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>primaryContact</name>
+            <value>
+                <elementReference>Booking_Contact_Details_SubFlow.Primary_Contact_Record_Output_Param</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
     <assignments>
         <name>Conditions_Assignment</name>
         <label>Conditions Assignment</label>
@@ -69,7 +107,7 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>Contact_Details_Flow</targetReference>
+                <targetReference>Booking_Contact_Details_SubFlow</targetReference>
             </connector>
             <label>Is_True</label>
         </rules>
@@ -144,6 +182,12 @@
         <name>BuilderType</name>
         <value>
             <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>FREE_FORM_CANVAS</stringValue>
         </value>
     </processMetadataValues>
     <processMetadataValues>
@@ -346,6 +390,35 @@
     </start>
     <status>Active</status>
     <subflows>
+        <name>Booking_Contact_Details_SubFlow</name>
+        <label>Booking Contact Details SubFlow</label>
+        <locationX>1022</locationX>
+        <locationY>156</locationY>
+        <connector>
+            <targetReference>Update_Contact_Action</targetReference>
+        </connector>
+        <flowName>Booking_Contact_Details_Flow</flowName>
+        <inputAssignments>
+            <name>Booking_Record_Input_Param</name>
+            <value>
+                <elementReference>bookingRecord</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>Contact_Record_Input_Param</name>
+            <value>
+                <elementReference>PrimaryContactRecord</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>Course_Record_Input_Param</name>
+            <value>
+                <elementReference>courseRecord</elementReference>
+            </value>
+        </inputAssignments>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </subflows>
+    <subflows>
         <name>Booking_Journey_Available</name>
         <label>Booking Journey Available</label>
         <locationX>1019</locationX>
@@ -370,47 +443,13 @@
     <subflows>
         <name>Booking_Main_Payment_Process_Flow</name>
         <label>Booking Main Payment Process Flow</label>
-        <locationX>1281</locationX>
+        <locationX>1326</locationX>
         <locationY>156</locationY>
         <flowName>Booking_Main_Payment_Process</flowName>
         <inputAssignments>
             <name>bookingId</name>
             <value>
                 <elementReference>bookingRecord.Id</elementReference>
-            </value>
-        </inputAssignments>
-    </subflows>
-    <subflows>
-        <name>Contact_Details_Flow</name>
-        <label>Contact Details Flow</label>
-        <locationX>1016</locationX>
-        <locationY>154</locationY>
-        <connector>
-            <targetReference>Booking_Main_Payment_Process_Flow</targetReference>
-        </connector>
-        <flowName>Booking_Journey_Update_Contact_Details</flowName>
-        <inputAssignments>
-            <name>bookingId</name>
-            <value>
-                <elementReference>bookingRecord.Id</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <name>bookingRecord</name>
-            <value>
-                <elementReference>bookingRecord</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <name>courseRecord</name>
-            <value>
-                <elementReference>courseRecord</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <name>PrimaryContactRecord</name>
-            <value>
-                <elementReference>PrimaryContactRecord</elementReference>
             </value>
         </inputAssignments>
     </subflows>
