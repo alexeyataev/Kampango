@@ -27,7 +27,6 @@
         <members>BOOKING_PopulateContactEDD_TDTM_Test</members>
         <members>BookingDetailsController</members>
         <members>BookingDetailsControllerTest</members>
-        <members>BookingFlowContactDetailsParams</members>
         <members>BookingFlowUpdateNctNumber</members>
         <members>BookingFlowUpdateNctNumberTest</members>
         <members>BookingJourneyHelper</members>
