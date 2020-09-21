@@ -3,8 +3,8 @@
     <assignments>
         <name>Assign_Booking_Data_for_Booking_Journey_Client</name>
         <label>Assign Booking Data for Booking Journey Client</label>
-        <locationX>1384</locationX>
-        <locationY>1007</locationY>
+        <locationX>1394</locationX>
+        <locationY>1039</locationY>
         <assignmentItems>
             <assignToReference>Booking_Record_Output_Param.How_Heard__c</assignToReference>
             <operator>Assign</operator>
@@ -40,8 +40,8 @@
     <assignments>
         <name>Assign_Booking_Data_for_QuickBooks_Client</name>
         <label>Assign Booking Data for QuickBooks Client</label>
-        <locationX>1204</locationX>
-        <locationY>11</locationY>
+        <locationX>1207</locationX>
+        <locationY>8</locationY>
         <assignmentItems>
             <assignToReference>Booking_Record_Output_Param.How_Heard__c</assignToReference>
             <operator>Assign</operator>
@@ -63,6 +63,10 @@
                 <elementReference>QB_Under_18_Checkbox</elementReference>
             </value>
         </assignmentItems>
+        <assignmentItems>
+            <assignToReference>Booking_Record_Output_Param.Id</assignToReference>
+            <operator>Assign</operator>
+        </assignmentItems>
         <connector>
             <targetReference>Assign_Individual_Data_for_QuickBooks_Client</targetReference>
         </connector>
@@ -70,8 +74,8 @@
     <assignments>
         <name>Assign_Individual_Data_for_Booking_Journey_Client</name>
         <label>Assign Individual Data for Booking Journey Client</label>
-        <locationX>1524</locationX>
-        <locationY>1007</locationY>
+        <locationX>1528</locationX>
+        <locationY>1040</locationY>
         <assignmentItems>
             <assignToReference>Individual_Record_Output_Param.Has_Opted_In_Email__c</assignToReference>
             <operator>Assign</operator>
@@ -114,8 +118,8 @@
     <assignments>
         <name>Assign_Individual_Data_for_QuickBooks_Client</name>
         <label>Assign Individual Data for QuickBooks Client</label>
-        <locationX>1340</locationX>
-        <locationY>11</locationY>
+        <locationX>1338</locationX>
+        <locationY>8</locationY>
         <assignmentItems>
             <assignToReference>Individual_Record_Output_Param.Has_Opted_In_Email__c</assignToReference>
             <operator>Assign</operator>
@@ -143,6 +147,31 @@
             <value>
                 <elementReference>Marketing_Preferences_Phone</elementReference>
             </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>Individual_Record_Output_Param.FirstName</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Primary_Contact_Record_Output_Param.FirstName</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>Individual_Record_Output_Param.LastName</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Primary_Contact_Record_Output_Param.LastName</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>Individual_Record_Output_Param.Salutation</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Primary_Contact_Record_Output_Param.Salutation</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>Individual_Record_Output_Param.Id</assignToReference>
+            <operator>Assign</operator>
         </assignmentItems>
         <connector>
             <targetReference>Assign_Partner_Contact_Data_for_QuickBooks_Client</targetReference>
@@ -211,6 +240,13 @@
                 <elementReference>BJ_WithoutPartnerEmail_Input_Text</elementReference>
             </value>
         </assignmentItems>
+        <assignmentItems>
+            <assignToReference>Partner_Contact_Record_Output_Param.RecordTypeId</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_Record_Type.Id</elementReference>
+            </value>
+        </assignmentItems>
         <connector>
             <targetReference>BJ_Do_Need_To_Display_Phone_Error</targetReference>
         </connector>
@@ -218,8 +254,8 @@
     <assignments>
         <name>Assign_Partner_Contact_Data_for_QuickBooks_Client</name>
         <label>Assign Partner Contact Data for QuickBooks Client</label>
-        <locationX>1476</locationX>
-        <locationY>11</locationY>
+        <locationX>1479</locationX>
+        <locationY>7</locationY>
         <assignmentItems>
             <assignToReference>Partner_Contact_Record_Output_Param.FirstName</assignToReference>
             <operator>Assign</operator>
@@ -241,6 +277,17 @@
                 <elementReference>QB_ParthnerEmail_Input_Text</elementReference>
             </value>
         </assignmentItems>
+        <assignmentItems>
+            <assignToReference>Partner_Contact_Record_Output_Param.RecordTypeId</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_Record_Type.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>Partner_Contact_Record_Output_Param.Id</assignToReference>
+            <operator>Assign</operator>
+        </assignmentItems>
         <connector>
             <targetReference>QB_Do_Need_To_Display_Phone_Error</targetReference>
         </connector>
@@ -249,7 +296,7 @@
         <name>Assign_Primary_Contact_Data_for_Booking_Journey_Client</name>
         <label>Assign Primary Contact Data for Booking Journey Client</label>
         <locationX>1248</locationX>
-        <locationY>1004</locationY>
+        <locationY>1040</locationY>
         <assignmentItems>
             <assignToReference>Primary_Contact_Record_Output_Param.FirstName</assignToReference>
             <operator>Assign</operator>
@@ -355,6 +402,13 @@
                 <elementReference>BJ_PreferredPhone_Picklist</elementReference>
             </value>
         </assignmentItems>
+        <assignmentItems>
+            <assignToReference>Primary_Contact_Record_Output_Param.RecordTypeId</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_Record_Type.Id</elementReference>
+            </value>
+        </assignmentItems>
         <connector>
             <targetReference>Assign_Booking_Data_for_Booking_Journey_Client</targetReference>
         </connector>
@@ -362,8 +416,8 @@
     <assignments>
         <name>Assign_Primary_Contact_Data_for_QuickBooks_Client</name>
         <label>Assign Primary Contact Data for QuickBooks Client</label>
-        <locationX>1064</locationX>
-        <locationY>10</locationY>
+        <locationX>1066</locationX>
+        <locationY>8</locationY>
         <assignmentItems>
             <assignToReference>Primary_Contact_Record_Output_Param.FirstName</assignToReference>
             <operator>Assign</operator>
@@ -462,6 +516,17 @@
                 <booleanValue>false</booleanValue>
             </value>
         </assignmentItems>
+        <assignmentItems>
+            <assignToReference>Primary_Contact_Record_Output_Param.RecordTypeId</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_Record_Type.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>Primary_Contact_Record_Output_Param.Id</assignToReference>
+            <operator>Assign</operator>
+        </assignmentItems>
         <connector>
             <targetReference>Assign_Booking_Data_for_QuickBooks_Client</targetReference>
         </connector>
@@ -469,7 +534,7 @@
     <assignments>
         <name>Pre_populated_Phone_Information</name>
         <label>Pre-populated Phone Information.</label>
-        <locationX>1083</locationX>
+        <locationX>1066</locationX>
         <locationY>767</locationY>
         <assignmentItems>
             <assignToReference>Primary_Contact_Record_Output_Param.HomePhone</assignToReference>
@@ -492,8 +557,8 @@
     <assignments>
         <name>QB_Set_Display_Partner_Error_to_True</name>
         <label>Set Display Partner Error to True</label>
-        <locationX>1467</locationX>
-        <locationY>299</locationY>
+        <locationX>1452</locationX>
+        <locationY>300</locationY>
         <assignmentItems>
             <assignToReference>Do_We_Need_To_Dispaly_Partner_Error</assignToReference>
             <operator>Assign</operator>
@@ -508,8 +573,8 @@
     <assignments>
         <name>QB_Set_Display_Partner_Error_to_True_0</name>
         <label>Set Display Partner Error to True</label>
-        <locationX>1474</locationX>
-        <locationY>481</locationY>
+        <locationX>1449</locationX>
+        <locationY>444</locationY>
         <assignmentItems>
             <assignToReference>Do_We_Neet_To_Display_How_Heard_Error_Message</assignToReference>
             <operator>Assign</operator>
@@ -557,8 +622,8 @@
     <assignments>
         <name>Set_With_Partner_Bool_Value_to_True</name>
         <label>Set With Partner Bool Value to True</label>
-        <locationX>1082</locationX>
-        <locationY>1003</locationY>
+        <locationX>1067</locationX>
+        <locationY>1002</locationY>
         <assignmentItems>
             <assignToReference>With_Partner_Boolean_Value</assignToReference>
             <operator>Assign</operator>
@@ -611,6 +676,13 @@
             <elementReference>Preferred_Phone_Second_Option</elementReference>
         </value>
     </choices>
+    <constants>
+        <name>CONTACT_RECORD_TYPE_NAME_CLIENT</name>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Clients</stringValue>
+        </value>
+    </constants>
     <constants>
         <name>COUTRY_UNITED_KINGDOM</name>
         <dataType>String</dataType>
@@ -812,7 +884,7 @@
     <decisions>
         <name>Check_How_Heard_Value</name>
         <label>Check How Heard Value</label>
-        <locationX>1730</locationX>
+        <locationX>1728</locationX>
         <locationY>539</locationY>
         <defaultConnectorLabel>Is Not None</defaultConnectorLabel>
         <rules>
@@ -909,8 +981,8 @@
     <decisions>
         <name>QB_Do_Need_To_Display_Partner_Error_1</name>
         <label>Do Need To Display Partner Error</label>
-        <locationX>1723</locationX>
-        <locationY>158</locationY>
+        <locationX>1726</locationX>
+        <locationY>160</locationY>
         <defaultConnector>
             <targetReference>QB_Set_Display_Partner_Error_to_True</targetReference>
         </defaultConnector>
@@ -1029,8 +1101,8 @@
     <decisions>
         <name>QB_Do_Need_To_Display_Phone_Error</name>
         <label>Do Need To Display Phone Error</label>
-        <locationX>1466</locationX>
-        <locationY>158</locationY>
+        <locationX>1471</locationX>
+        <locationY>166</locationY>
         <defaultConnector>
             <targetReference>QB_Do_Need_To_Display_Partner_Error_1</targetReference>
         </defaultConnector>
@@ -1251,12 +1323,35 @@
         <queriedFields>Email</queriedFields>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
+    <recordLookups>
+        <name>Get_Record_Type</name>
+        <label>Get Record Type</label>
+        <locationX>481</locationX>
+        <locationY>497</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Is_Quick_Booking</targetReference>
+        </connector>
+        <faultConnector>
+            <targetReference>Error_Handler_Flow_Subflow</targetReference>
+        </faultConnector>
+        <filters>
+            <field>DeveloperName</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>CONTACT_RECORD_TYPE_NAME_CLIENT</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>RecordType</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
     <runInMode>DefaultMode</runInMode>
     <screens>
         <name>BJ_Contact_Details_Scree</name>
         <label>BJ Contact Details Screen</label>
         <locationX>1248</locationX>
-        <locationY>768</locationY>
+        <locationY>764</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
@@ -2221,18 +2316,18 @@
         <showHeader>false</showHeader>
     </screens>
     <start>
-        <locationX>151</locationX>
-        <locationY>414</locationY>
+        <locationX>176</locationX>
+        <locationY>221</locationY>
         <connector>
-            <targetReference>Is_Quick_Booking</targetReference>
+            <targetReference>Get_Record_Type</targetReference>
         </connector>
     </start>
     <status>Active</status>
     <subflows>
         <name>Error_Handler_Flow_Subflow</name>
         <label>Error Handler Flow Subflow</label>
-        <locationX>472</locationX>
-        <locationY>592</locationY>
+        <locationX>424</locationX>
+        <locationY>999</locationY>
         <flowName>Error_Handler_Flow</flowName>
     </subflows>
     <textTemplates>
