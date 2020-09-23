@@ -181,7 +181,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>Total_Course_Booking_Income__c</field>
+                <field>Total_Booking_Income__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>

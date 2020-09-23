@@ -172,11 +172,11 @@ private class dlrs_Zumzum_Sales_InvoiceTest {
             booking.Status__c = 'Confirmed';
             update booking;
             Course__c courseAfterRecalculations = [
-                SELECT Id, Total_Course_Booking_Income__c, Total_Course_Fee_Income__c, Total_Other_Income__c
+                SELECT Id, Total_Booking_Income__c, Total_Course_Fee_Income__c, Total_Other_Income__c
                 FROM Course__c
                 LIMIT 1
             ];
-            System.assertEquals(courseAfterRecalculations.Total_Course_Fee_Income__c + courseAfterRecalculations.Total_Other_Income__c, courseAfterRecalculations.Total_Course_Booking_Income__c);
+            System.assertEquals(courseAfterRecalculations.Total_Course_Fee_Income__c + courseAfterRecalculations.Total_Other_Income__c, courseAfterRecalculations.Total_Booking_Income__c);
         
         }
         Test.stopTest();
