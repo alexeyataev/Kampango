@@ -934,6 +934,7 @@
     <types>
         <members>Company</members>
         <members>EmailAdministration</members>
+        <members>Search</members>
         <name>Settings</name>
     </types>
     <types>
