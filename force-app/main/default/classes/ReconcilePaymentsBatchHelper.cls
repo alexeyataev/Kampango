@@ -97,7 +97,7 @@ public with sharing class ReconcilePaymentsBatchHelper {
 
     private static Batch_Receipt_Report__c getReceiptReportById(Id batchReceiptReportId) {
         return [
-            SELECT Id, Zumzum__BankReconcile__c, Status__c, Batch_Id__c, From_Date__c, To_Date__c
+            SELECT Id, BankReconcile__c, Status__c, Batch_Id__c, From_Date__c, To_Date__c
             FROM Batch_Receipt_Report__c
             WHERE Id = :batchReceiptReportId 
             WITH SECURITY_ENFORCED
@@ -109,7 +109,7 @@ public with sharing class ReconcilePaymentsBatchHelper {
         Zumzum__BankReconcile__c bankReconcile;
 
         if(receipt.Zumzum__BankReconcile__c != null){
-            bankReconcile = [SELECT Id FROM Zumzum__BankReconcile__c WHERE Id = :receipt.Zumzum__BankReconcile__c];
+            bankReconcile = [SELECT Id FROM Zumzum__BankReconcile__c WHERE Id = :receipt.BankReconcile__c];
         }else{
             bankReconcile = new Zumzum__BankReconcile__c(
                 Zumzum__Status__c = DRAFT_STATUS,
