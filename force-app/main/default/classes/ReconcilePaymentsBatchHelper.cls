@@ -6,7 +6,7 @@ public with sharing class ReconcilePaymentsBatchHelper {
 
     public static void processBatchReceiptReportItems(List<Batch_Receipt_Report_Item__c> receiptReportItems) {
         Batch_Receipt_Report__c receiptReport = getReceiptReportById(receiptReportItems[0].Batch_Receipt_Report__c);
-        Id bankReconcileId = getBankReconcileId(receiptReport);
+        Zumzum__BankReconcile__c bankReconcile = getBankReconcile(receiptReport);
 
         Set<String> paymentReceiptReferences = new Set<String>();
         Set<String> refundReceiptReferences = new Set<String>();
@@ -47,7 +47,7 @@ public with sharing class ReconcilePaymentsBatchHelper {
         Map<String, Id> paymentsBankReceipts = getPaymentsBankReceipts(paymentAndRefundLedgers);
 
         for (Zumzum__Ledger__c ledger : paymentAndRefundLedgers) {
-            ledger.Zumzum__BankReconcile__c = bankReconcileId;
+            ledger.Zumzum__BankReconcile__c = bankReconcile.Id;
             ledger.Zumzum__Bank_Reconcile__c = 'N';
         }
         update paymentAndRefundLedgers;
@@ -61,7 +61,7 @@ public with sharing class ReconcilePaymentsBatchHelper {
         }
         update receiptReportItems;
 
-        receiptReport.BankReconcile__c = bankReconcileId;
+        receiptReport.BankReconcile__c = bankReconcile.Id;
         update receiptReport;
     }
 
@@ -105,11 +105,11 @@ public with sharing class ReconcilePaymentsBatchHelper {
         ];
     }
 
-    private static Id getBankReconcileId(Batch_Receipt_Report__c receipt) {
-        Id bankReconcileId;
+    private static Zumzum__BankReconcile__c getBankReconcile(Batch_Receipt_Report__c receipt) {
+        Zumzum__BankReconcile__c bankReconcile;
 
         if(receipt.BankReconcile__c != null){
-            bankReconcileId = receipt.BankReconcile__c;
+            bankReconcile = new Zumzum__BankReconcile__c(Id = receipt.BankReconcile__c);
         }else{
             bankReconcile = new Zumzum__BankReconcile__c(
                 Zumzum__Status__c = DRAFT_STATUS,
@@ -119,10 +119,9 @@ public with sharing class ReconcilePaymentsBatchHelper {
                 Zumzum__Transaction_End_Date__c = receipt.To_Date__c
             );
             insert bankReconcile;
-            bankReconcileId = bankReconcile.Id;
         }
 
-        return bankReconcileId;
+        return bankReconcile;
     }
 
     private static List<Zumzum__Ledger__c> getLedgers(Set<String> paymentReceiptReferences, Set<Id> bankPaymentIds) {
