@@ -9,7 +9,8 @@ try {
                 SELECT Id
                 FROM Zumzum__Purchase_Invoice__c
                 WHERE Zumzum__Status__c = :STATUS_DRAFT
-                LIMIT 50000
+                ORDER BY Zumzum__Account__c
+                LIMIT 10000
         ]
     );
 
@@ -17,5 +18,5 @@ try {
     purchaseInvoicePostService.PostPurchaseInvoice(draftSalesPurchaseMap.keySet(), EXECUTE_IN_BATCH_PROCESSING);
 
 } catch (QueryException qe) {
-    System.debug(EXCEPTION_MESSAGE + qe.getMessage());
+    System.debug(qe.getMessage());
 }

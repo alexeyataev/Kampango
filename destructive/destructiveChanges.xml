@@ -6,6 +6,11 @@
         <members>BookCourseControllerTest</members>
         <members>ContactDetailsController</members>
         <members>ContactDetailsControllerTest</members>
+        <members>DM_SIPIAllocation</members>
+        <members>DM_PurchaseAllocationBatch</members>
+        <members>DM_PurchaseAllocationBatchTest</members>
+        <members>DM_SalesAllocationBatch</members>
+        <members>DM_SalesAllocationBatchTest</members>
         <members>DirectDebitModels</members>
         <members>DirectDebitUtilities</members>
         <members>DirectDebitUtilitiesTest</members>

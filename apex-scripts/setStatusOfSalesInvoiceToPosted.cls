@@ -7,7 +7,8 @@ try {
         SELECT Id
         FROM Zumzum__Sales_Invoice__c
         WHERE Zumzum__Status__c = :STATUS_DRAFT
-        LIMIT 50000
+        ORDER BY Zumzum__Account__c
+        LIMIT 49995
     ];
 
     Zumzum.SalesInvoicePostService salesInvoicePostService = new Zumzum.SalesInvoicePostService();
