@@ -108,7 +108,7 @@ public with sharing class ReconcilePaymentsBatchHelper {
     private static Zumzum__BankReconcile__c getBankReconcile(Batch_Receipt_Report__c receipt) {
         Zumzum__BankReconcile__c bankReconcile;
 
-        if(receipt.Zumzum__BankReconcile__c != null){
+        if(receipt.BankReconcile__c != null){
             bankReconcile = [SELECT Id FROM Zumzum__BankReconcile__c WHERE Id = :receipt.BankReconcile__c];
         }else{
             bankReconcile = new Zumzum__BankReconcile__c(
