@@ -106,14 +106,30 @@ public with sharing class ReconcilePaymentsBatchHelper {
     }
 
     private static Zumzum__BankReconcile__c getBankReconcile(Batch_Receipt_Report__c receipt) {
-        Zumzum__BankReconcile__c bankReconcile = new Zumzum__BankReconcile__c(
-            Zumzum__Status__c = DRAFT_STATUS,
-            Zumzum__Bank_Account__c = getBankAccountIdByNominalAccountCode(BANK_NOMINAL_ACCOUNT_CODE),
-            Zumzum__Statement_Date__c = Date.today(),
-            Zumzum__Transaction_Start_Date__c = receipt.From_Date__c,
-            Zumzum__Transaction_End_Date__c = receipt.To_Date__c
-        );
-        insert bankReconcile;
+        Zumzum__BankReconcile__c bankReconcile;
+        Id bankAccountId = getBankAccountIdByNominalAccountCode(BANK_NOMINAL_ACCOUNT_CODE);
+
+        List<Zumzum__BankReconcile__c> existingDraftReconcileRecords = [SELECT Id
+                                                                        FROM Zumzum__BankReconcile__c
+                                                                        WHERE Zumzum__Status__c = :DRAFT_STATUS
+                                                                            AND Zumzum__Bank_Account__c = :bankAccountId
+                                                                            AND Zumzum__Statement_Date__c = TODAY
+                                                                            AND Zumzum__Transaction_Start_Date__c = :receipt.From_Date__c
+                                                                            AND Zumzum__Transaction_End_Date__c = :receipt.To_Date__c];
+
+        if(existingDraftReconcileRecords.size() == 1){
+            bankReconcile = existingDraftReconcileRecords[0];
+        }else{
+            bankReconcile = new Zumzum__BankReconcile__c(
+                Zumzum__Status__c = DRAFT_STATUS,
+                Zumzum__Bank_Account__c = bankAccountId,
+                Zumzum__Statement_Date__c = Date.today(),
+                Zumzum__Transaction_Start_Date__c = receipt.From_Date__c,
+                Zumzum__Transaction_End_Date__c = receipt.To_Date__c
+            );
+            insert bankReconcile;
+        }
+
         return bankReconcile;
     }
 
