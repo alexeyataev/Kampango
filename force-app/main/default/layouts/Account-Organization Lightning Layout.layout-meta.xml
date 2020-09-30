@@ -26,6 +26,10 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
+                <field>Zumzum__Additional_Reference__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
                 <field>Zumzum__Bank_Account_Name__c</field>
             </layoutItems>
             <layoutItems>

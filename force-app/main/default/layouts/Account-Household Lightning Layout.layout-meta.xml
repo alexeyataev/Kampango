@@ -17,6 +17,10 @@
                 <field>Name</field>
             </layoutItems>
             <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>AccountNumber</field>
+            </layoutItems>
+            <layoutItems>
                 <behavior>Edit</behavior>
                 <field>npe01__One2OneContact__c</field>
             </layoutItems>
